@@ -1,505 +1,529 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aegis FaceGuard | Seguridad Inteligente</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Aegis FaceGuard</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      scroll-behavior:smooth;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    body{
-      background:#050816;
-      color:white;
-      font-family:'Inter',sans-serif;
-      overflow-x:hidden;
-    }
+<style>
 
-    body::before{
-      content:'';
-      position:fixed;
-      width:100%;
-      height:100%;
-      background:
-      radial-gradient(circle at top left,#00c3ff20,transparent 30%),
-      radial-gradient(circle at bottom right,#0066ff20,transparent 30%);
-      z-index:-1;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    header{
-      position:fixed;
-      width:100%;
-      top:0;
-      left:0;
-      padding:20px 8%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:rgba(0,0,0,0.35);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,0.08);
-      z-index:999;
-    }
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
 
-    .logo{
-      font-family:'Orbitron',sans-serif;
-      font-size:1.5rem;
-      color:#00c3ff;
-      font-weight:700;
-      letter-spacing:2px;
-    }
+/* HERO */
 
-    nav a{
-      margin-left:25px;
-      text-decoration:none;
-      color:white;
-      transition:0.3s;
-      font-size:0.95rem;
-    }
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:80px 10%;
+    background:
+    radial-gradient(circle at top right,#00bfff22,transparent 30%),
+    radial-gradient(circle at bottom left,#0066ff22,transparent 30%),
+    #050816;
+}
 
-    nav a:hover{
-      color:#00c3ff;
-    }
+.hero-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
 
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:120px 8%;
-      position:relative;
-    }
+.badge{
+    display:inline-block;
+    background:#00bfff20;
+    border:1px solid #00bfff50;
+    color:#7dd3fc;
+    padding:10px 20px;
+    border-radius:50px;
+    margin-bottom:25px;
+    font-size:14px;
+}
 
-    .hero-content{
-      max-width:900px;
-    }
+.hero h1{
+    font-size:72px;
+    line-height:1;
+    font-weight:800;
+}
 
-    .hero h1{
-      font-size:4rem;
-      font-family:'Orbitron',sans-serif;
-      line-height:1.2;
-      margin-bottom:25px;
-      background:linear-gradient(to right,#00c3ff,#00f7ff);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
+.hero h1 span{
+    color:#00bfff;
+}
 
-    .hero p{
-      font-size:1.2rem;
-      color:#cfd8e3;
-      line-height:1.8;
-      margin-bottom:40px;
-    }
+.hero p{
+    margin-top:30px;
+    color:#cbd5e1;
+    font-size:20px;
+    line-height:1.7;
+}
 
-    .buttons{
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
+.buttons{
+    margin-top:40px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
 
-    .btn{
-      padding:15px 35px;
-      border:none;
-      border-radius:50px;
-      text-decoration:none;
-      font-weight:600;
-      transition:0.3s;
-    }
+.btn{
+    padding:16px 32px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
 
-    .btn-primary{
-      background:#00c3ff;
-      color:black;
-      box-shadow:0 0 25px #00c3ff60;
-    }
+.btn-primary{
+    background:#00bfff;
+    color:black;
+}
 
-    .btn-primary:hover{
-      transform:translateY(-3px);
-      box-shadow:0 0 40px #00c3ff;
-    }
+.btn-primary:hover{
+    background:#38bdf8;
+}
 
-    .btn-secondary{
-      border:1px solid #00c3ff;
-      color:#00c3ff;
-      background:transparent;
-    }
+.btn-secondary{
+    border:1px solid #334155;
+    color:white;
+}
 
-    .btn-secondary:hover{
-      background:#00c3ff;
-      color:black;
-    }
+.btn-secondary:hover{
+    border-color:#00bfff;
+}
 
-    section{
-      padding:100px 8%;
-    }
+.stats{
+    display:flex;
+    gap:40px;
+    margin-top:50px;
+}
 
-    .section-title{
-      text-align:center;
-      margin-bottom:60px;
-    }
+.stats h3{
+    color:#00bfff;
+    font-size:32px;
+}
 
-    .section-title h2{
-      font-size:2.8rem;
-      font-family:'Orbitron',sans-serif;
-      color:#00c3ff;
-      margin-bottom:15px;
-    }
+.stats p{
+    font-size:14px;
+    margin-top:5px;
+}
 
-    .section-title p{
-      color:#b7c2d0;
-    }
+/* CARD */
 
-    .about{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:60px;
-      align-items:center;
-    }
+.hero-card{
+    background:#0f172a;
+    border:1px solid #1e293b;
+    border-radius:30px;
+    padding:40px;
+    position:relative;
+    overflow:hidden;
+}
 
-    .about-text p{
-      line-height:1.9;
-      color:#cfd8e3;
-    }
+.hero-card::before{
+    content:'';
+    position:absolute;
+    inset:-100px;
+    background:radial-gradient(circle,#00bfff22,transparent 60%);
+}
 
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:25px;
-    }
+.card-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+}
 
-    .stat-box{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      padding:30px;
-      border-radius:20px;
-      text-align:center;
-      backdrop-filter:blur(10px);
-    }
+.eye{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    border:5px solid #00bfff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    font-size:50px;
+    margin-bottom:30px;
+}
 
-    .stat-box h3{
-      font-size:2rem;
-      color:#00c3ff;
-      margin-bottom:10px;
-    }
+/* SERVICES */
 
-    .services{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:30px;
-    }
+.services{
+    padding:120px 10%;
+}
 
-    .service-card{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      padding:35px;
-      border-radius:25px;
-      transition:0.4s;
-      backdrop-filter:blur(10px);
-    }
+.section-title{
+    text-align:center;
+    margin-bottom:70px;
+}
 
-    .service-card:hover{
-      transform:translateY(-10px);
-      border-color:#00c3ff;
-      box-shadow:0 0 25px rgba(0,195,255,0.25);
-    }
+.section-title h2{
+    font-size:52px;
+    font-weight:800;
+}
 
-    .service-card h3{
-      margin-bottom:20px;
-      color:#00c3ff;
-      font-size:1.4rem;
-    }
+.section-title p{
+    color:#94a3b8;
+    margin-top:20px;
+    font-size:18px;
+}
 
-    .service-card ul{
-      list-style:none;
-    }
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
 
-    .service-card ul li{
-      margin-bottom:12px;
-      color:#d5dce6;
-    }
+.service-card{
+    background:#0f172a;
+    border:1px solid #1e293b;
+    border-radius:25px;
+    padding:35px;
+    transition:0.3s;
+}
 
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:25px;
-    }
+.service-card:hover{
+    transform:translateY(-10px);
+    border-color:#00bfff;
+}
 
-    .gallery img{
-      width:100%;
-      height:250px;
-      object-fit:cover;
-      border-radius:20px;
-      transition:0.4s;
-    }
+.service-icon{
+    font-size:50px;
+    margin-bottom:25px;
+}
 
-    .gallery img:hover{
-      transform:scale(1.03);
-    }
+.service-card h3{
+    font-size:24px;
+    margin-bottom:15px;
+}
 
-    .cta{
-      text-align:center;
-      background:linear-gradient(135deg,#00c3ff20,#001b3a);
-      border-radius:30px;
-      padding:80px 40px;
-      border:1px solid rgba(255,255,255,0.08);
-    }
+.service-card p{
+    color:#94a3b8;
+    line-height:1.7;
+}
 
-    .cta h2{
-      font-size:3rem;
-      margin-bottom:20px;
-      font-family:'Orbitron',sans-serif;
-    }
+/* WHY */
 
-    .contact-form{
-      max-width:700px;
-      margin:auto;
-    }
+.why{
+    background:#0f172a;
+    padding:120px 10%;
+}
 
-    .contact-form form{
-      display:flex;
-      flex-direction:column;
-      gap:20px;
-    }
+.why-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
 
-    .contact-form input,
-    .contact-form textarea{
-      padding:18px;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:15px;
-      color:white;
-      outline:none;
-    }
+.why h2{
+    font-size:52px;
+    font-weight:800;
+    line-height:1.2;
+}
 
-    .contact-form textarea{
-      min-height:150px;
-      resize:none;
-    }
+.why p{
+    color:#94a3b8;
+    margin-top:30px;
+    line-height:1.8;
+    font-size:18px;
+}
 
-    footer{
-      padding:40px 8%;
-      text-align:center;
-      border-top:1px solid rgba(255,255,255,0.08);
-      margin-top:60px;
-      color:#9fb0c5;
-    }
+.features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
 
-    @media(max-width:900px){
-      .hero h1{
-        font-size:2.7rem;
-      }
+.feature{
+    background:#050816;
+    border:1px solid #1e293b;
+    padding:25px;
+    border-radius:20px;
+}
 
-      .about{
-        grid-template-columns:1fr;
-      }
+/* CTA */
 
-      nav{
-        display:none;
-      }
-    }
-  </style>
+.cta{
+    padding:120px 10%;
+}
+
+.cta-box{
+    background:linear-gradient(to right,#00bfff22,#1d4ed822);
+    border:1px solid #00bfff30;
+    border-radius:30px;
+    padding:70px;
+    text-align:center;
+}
+
+.cta h2{
+    font-size:52px;
+    font-weight:800;
+}
+
+.cta p{
+    margin-top:25px;
+    color:#cbd5e1;
+    font-size:20px;
+    line-height:1.7;
+}
+
+.cta .btn{
+    margin-top:40px;
+    display:inline-block;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px;
+    border-top:1px solid #1e293b;
+    text-align:center;
+    color:#64748b;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero-container,
+.why-container{
+    grid-template-columns:1fr;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.section-title h2,
+.why h2,
+.cta h2{
+    font-size:38px;
+}
+
+.cta-box{
+    padding:40px 25px;
+}
+
+.features{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">AEGIS FACEGUARD</div>
-
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#about">Nosotros</a>
-    <a href="#services">Servicios</a>
-    <a href="#gallery">Proyectos</a>
-    <a href="#contact">Contacto</a>
-  </nav>
-</header>
-
 <section class="hero">
-  <div class="hero-content">
 
-    <h1>Protegiendo el Futuro con Inteligencia Artificial</h1>
+<div class="hero-container">
 
-    <p>
-      Soluciones avanzadas en videovigilancia inteligente, reconocimiento facial,
-      drones, energía solar y automatización tecnológica.
-    </p>
+<div>
 
-    <div class="buttons">
-      <a href="#contact" class="btn btn-primary">Solicitar Cotización</a>
-      <a href="#services" class="btn btn-secondary">Ver Servicios</a>
-    </div>
+<div class="badge">
+Inteligencia Artificial • Seguridad Inteligente
+</div>
 
-  </div>
-</section>
+<h1>
+AEGIS <br>
+<span>FACEGUARD</span>
+</h1>
 
-<section id="about">
+<p>
+Plataforma avanzada de seguridad con inteligencia artificial para reconocimiento facial, detección de armas, monitoreo inteligente y videovigilancia profesional.
+</p>
 
-  <div class="section-title">
-    <h2>Sobre Nosotros</h2>
-    <p>Tecnología avanzada para un mundo más seguro e inteligente</p>
-  </div>
+<div class="buttons">
 
-  <div class="about">
+<a href="https://wa.me/573001112233" class="btn btn-primary">
+Solicitar Demo
+</a>
 
-    <div class="about-text">
-      <p>
-        En Aegis FaceGuard desarrollamos soluciones tecnológicas avanzadas
-        enfocadas en seguridad inteligente, automatización y energía sostenible.
-        Integramos inteligencia artificial, videovigilancia, drones y sistemas solares
-        para ofrecer proyectos modernos, eficientes y escalables.
-      </p>
-    </div>
+<a href="#servicios" class="btn btn-secondary">
+Nuestros Servicios
+</a>
 
-    <div class="stats">
+</div>
 
-      <div class="stat-box">
-        <h3>+100</h3>
-        <p>Proyectos</p>
-      </div>
+<div class="stats">
 
-      <div class="stat-box">
-        <h3>24/7</h3>
-        <p>Monitoreo Inteligente</p>
-      </div>
+<div>
+<h3>24/7</h3>
+<p>Monitoreo Inteligente</p>
+</div>
 
-      <div class="stat-box">
-        <h3>IA</h3>
-        <p>Tecnología Avanzada</p>
-      </div>
+<div>
+<h3>IA</h3>
+<p>Analítica Avanzada</p>
+</div>
 
-      <div class="stat-box">
-        <h3>100%</h3>
-        <p>Soporte Técnico</p>
-      </div>
+<div>
+<h3>Cloud</h3>
+<p>Acceso Remoto</p>
+</div>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
-</section>
+<div class="hero-card">
 
-<section id="services">
+<div class="card-content">
 
-  <div class="section-title">
-    <h2>Servicios</h2>
-    <p>Soluciones integrales para seguridad, tecnología y energía</p>
-  </div>
+<div class="eye">
+👁️
+</div>
 
-  <div class="services">
+<h2 style="font-size:32px;">
+Reconocimiento Facial IA
+</h2>
 
-    <div class="service-card">
-      <h3>Sistema Aegis FaceGuard</h3>
-      <ul>
-        <li>Reconocimiento facial con IA</li>
-        <li>Detección de armas y cascos</li>
-        <li>Alertas automáticas</li>
-        <li>Notificaciones por WhatsApp</li>
-      </ul>
-    </div>
+<p style="margin-top:20px;color:#94a3b8;">
+Detección inteligente en tiempo real
+</p>
 
-    <div class="service-card">
-      <h3>Cámaras para Edificios</h3>
-      <ul>
-        <li>Sistemas IP PoE</li>
-        <li>NVR centralizados</li>
-        <li>Monitoreo remoto</li>
-        <li>Cableado estructurado</li>
-      </ul>
-    </div>
+</div>
 
-    <div class="service-card">
-      <h3>Servicio Técnico de Drones</h3>
-      <ul>
-        <li>Diagnóstico y reparación</li>
-        <li>Configuración FPV</li>
-        <li>Sistemas autónomos</li>
-        <li>Optimización de vuelo</li>
-      </ul>
-    </div>
+</div>
 
-    <div class="service-card">
-      <h3>Sistemas Solares</h3>
-      <ul>
-        <li>Sistemas On Grid y Off Grid</li>
-        <li>Dimensionamiento energético</li>
-        <li>Instalación profesional</li>
-        <li>Paneles solares eficientes</li>
-      </ul>
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-<section id="gallery">
+<section class="services" id="servicios">
 
-  <div class="section-title">
-    <h2>Proyectos</h2>
-    <p>Innovación y tecnología aplicada en cada proyecto</p>
-  </div>
+<div class="section-title">
 
-  <div class="gallery">
+<h2>Nuestros Servicios</h2>
 
-    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200" alt="">
-    <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1200" alt="">
-    <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=1200" alt="">
-    <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1200" alt="">
+<p>
+Soluciones integrales de seguridad, automatización y tecnología avanzada.
+</p>
 
-  </div>
+</div>
+
+<div class="service-grid">
+
+<div class="service-card">
+<div class="service-icon">🧠</div>
+<h3>Reconocimiento Facial</h3>
+<p>
+Identificación inteligente y alertas automáticas mediante IA.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">📹</div>
+<h3>Instalación de Cámaras</h3>
+<p>
+Sistemas IP, PoE y monitoreo profesional para edificios y negocios.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🚁</div>
+<h3>Drones y Soporte Técnico</h3>
+<p>
+Configuración, mantenimiento y soluciones avanzadas para drones.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">☀️</div>
+<h3>Sistemas Solares</h3>
+<p>
+Diseño e instalación de soluciones energéticas solares inteligentes.
+</p>
+</div>
+
+</div>
 
 </section>
 
-<section>
+<section class="why">
 
-  <div class="cta">
-    <h2>Lleva tu Seguridad al Siguiente Nivel</h2>
+<div class="why-container">
 
-    <p style="margin-bottom:35px;color:#cbd7e4;">
-      Tecnología inteligente para hogares, empresas y grandes infraestructuras.
-    </p>
+<div>
 
-    <a href="#contact" class="btn btn-primary">Contáctanos Ahora</a>
-  </div>
+<h2>
+Tecnología diseñada para proteger lo que más importa.
+</h2>
+
+<p>
+En Aegis FaceGuard combinamos inteligencia artificial, automatización y videovigilancia avanzada para ofrecer soluciones modernas de seguridad adaptadas a empresas, edificios y proyectos inteligentes.
+</p>
+
+</div>
+
+<div class="features">
+
+<div class="feature">
+✅ Detección de armas
+</div>
+
+<div class="feature">
+✅ Alertas en tiempo real
+</div>
+
+<div class="feature">
+✅ Acceso remoto
+</div>
+
+<div class="feature">
+✅ Monitoreo centralizado
+</div>
+
+<div class="feature">
+✅ Reconocimiento facial
+</div>
+
+<div class="feature">
+✅ Escalabilidad empresarial
+</div>
+
+</div>
+
+</div>
 
 </section>
 
-<section id="contact">
+<section class="cta">
 
-  <div class="section-title">
-    <h2>Contacto</h2>
-    <p>Estamos listos para ayudarte</p>
-  </div>
+<div class="cta-box">
 
-  <div class="contact-form">
+<h2>
+Lleva tu seguridad al siguiente nivel
+</h2>
 
-    <form>
+<p>
+Solicita una asesoría personalizada y conoce cómo Aegis FaceGuard puede proteger tu empresa con inteligencia artificial.
+</p>
 
-      <input type="text" placeholder="Nombre">
-      <input type="email" placeholder="Correo Electrónico">
-      <input type="text" placeholder="Teléfono">
-      <textarea placeholder="Cuéntanos sobre tu proyecto"></textarea>
+<a href="https://wa.me/573001112233" class="btn btn-primary">
+Contactar por WhatsApp
+</a>
 
-      <button class="btn btn-primary">
-        Enviar Solicitud
-      </button>
-
-    </form>
-
-  </div>
+</div>
 
 </section>
 
 <footer>
-  © 2026 Aegis FaceGuard — Todos los derechos reservados
+© 2026 Aegis FaceGuard • Seguridad Inteligente con IA
 </footer>
 
 </body>
