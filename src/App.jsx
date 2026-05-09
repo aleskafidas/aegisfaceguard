@@ -1,7 +1,8 @@
-import WhatsappButton from "./components/WhatsappButton"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import Services from "./components/Services"
+import Solutions from "./components/Solutions"
+import WhatsappButton from "./components/WhatsappButton"
 
 export default function App() {
 
@@ -13,6 +14,8 @@ export default function App() {
       <Hero />
 
       <Services />
+
+      <Solutions />
 
       <WhatsappButton />
 
