@@ -10,6 +10,8 @@ import Solutions from "./components/Solutions"
 import Technology from "./components/Technology"
 import WhatsappButton from "./components/WhatsappButton"
 import SolarSection from "./components/SolarSection"
+import Contact from "./components/Contact"
+import Store from "./components/Store"
 
 export default function App() {
 
@@ -39,6 +41,10 @@ export default function App() {
       <Story />
 
       <SolarSection />
+
+      <Contact />
+      
+      <Store />
 
     </>
   )

@@ -38,7 +38,7 @@ export default function Navbar() {
             Tecnología
           </a>
 
-          <a href="#" className="hover:text-sky-400 transition">
+          <a href="#contact" className="hover:text-sky-400 transition">
             Contacto
           </a>
 
