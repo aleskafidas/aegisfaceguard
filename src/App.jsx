@@ -1,3 +1,8 @@
+import Story from "./components/Story"
+import MissionVision from "./components/MissionVision"
+import Partners from "./components/Partners"
+import WhyAegis from "./components/WhyAegis"
+import Showcase from "./components/Showcase"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import Services from "./components/Services"
@@ -21,6 +26,16 @@ export default function App() {
       <Technology />
 
       <WhatsappButton />
+
+      <Showcase />
+
+      <WhyAegis />
+
+      <Partners />
+
+      <MissionVision />
+
+      <Story />
 
     </>
   )
