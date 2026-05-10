@@ -9,6 +9,7 @@ import Services from "./components/Services"
 import Solutions from "./components/Solutions"
 import Technology from "./components/Technology"
 import WhatsappButton from "./components/WhatsappButton"
+import SolarSection from "./components/SolarSection"
 
 export default function App() {
 
@@ -36,6 +37,8 @@ export default function App() {
       <MissionVision />
 
       <Story />
+
+      <SolarSection />
 
     </>
   )
