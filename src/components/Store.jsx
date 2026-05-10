@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { useEffect } from "react"
 
 import cam1 from "../assets/store/cam1.jpg"
 import cam2 from "../assets/store/cam2.jpg"
@@ -7,31 +8,49 @@ import cam3 from "../assets/store/cam3.png"
 const products = [
 
   {
-    title: "Cámara WiFi Robotica 3MP + Memoria 64GB",
+    title: "Cámara WiFi Interiores 3MP Robótica",
+
     price: "$169.900 COP",
+
+    amount: "169900",
+
     image: cam1,
+
     description:
-      "Cámara inteligente para interiores con visión nocturna y monitoreo remoto.",
+      "Cámara inteligente para interiores con visión nocturna, detección de movimiento y monitoreo remoto desde celular.",
+
     whatsapp:
       "https://wa.me/573003966155?text=Hola%20quiero%20comprar%20la%20Camara%20WiFi",
   },
 
   {
-    title: "Kit NVR + Cámaras wifi + disco duro 1TB",
-    price: "$1.390.000 COP",
+    title: "Kit WiFi + 4 Cámaras + Disco 1TB",
+
+    price: "$1.590.000 COP",
+
+    amount: "1590000",
+
     image: cam2,
+
     description:
-      "Sistema profesional para negocios y hogares facil instalacion.",
+      "Sistema profesional de videovigilancia para hogares, negocios y edificios con grabación 24/7.",
+
     whatsapp:
-      "https://wa.me/573003966155?text=Hola%20quiero%20comprar%20el%20Kit%20NVR",
+      "https://wa.me/573003966155?text=Hola%20quiero%20comprar%20el%20Kit%20de%204%20Camaras",
   },
 
   {
-    title: "Sistema Solar On-Grid desde 1kw",
+    title: "Kit Solar Inteligente Desde 1KW",
+
     price: "$3.500.000 COP",
+
+    amount: "3500000",
+
     image: cam3,
+
     description:
-      "Sistema solar on-grid con monitoreo energético.",
+      "Sistema solar on-grid con monitoreo energético inteligente y alta eficiencia.",
+
     whatsapp:
       "https://wa.me/573003966155?text=Hola%20quiero%20cotizar%20el%20Kit%20Solar",
   },
@@ -40,6 +59,63 @@ const products = [
 
 export default function Store() {
 
+  useEffect(() => {
+
+    const script = document.createElement("script")
+
+    script.src = "https://checkout.epayco.co/checkout.js"
+
+    script.async = true
+
+    document.body.appendChild(script)
+
+  }, [])
+
+  const handlePayment = (product) => {
+
+    if (!window.ePayco) {
+
+      alert("La pasarela de pago aún está cargando...")
+
+      return
+    }
+
+    const handler = window.ePayco.checkout.configure({
+
+      key: "b40f1bdd61dfc60995ba0bc2c895b4c1",
+
+      test: false,
+
+    })
+
+    handler.open({
+
+      external: false,
+
+      amount: product.amount,
+
+      name: product.title,
+
+      description: product.description,
+
+      currency: "cop",
+
+      country: "co",
+
+      lang: "es",
+
+      tax: "0",
+
+      tax_base: "0",
+
+      invoice: `AEGIS-${Date.now()}`,
+
+      response: "https://www.aegisfaceguard.com",
+
+    })
+
+  }
+
   return (
 
     <section
@@ -47,15 +123,18 @@ export default function Store() {
       className="bg-black text-white py-32 px-8 relative overflow-hidden"
     >
 
-      {/* GLOW */}
+      {/* EFECTOS */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[140px] rounded-full"></div>
+
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* TITLE */}
+        {/* TITULO */}
         <motion.div
 
           initial={{ opacity: 0, y: 40 }}
+
           whileInView={{ opacity: 1, y: 0 }}
 
           transition={{ duration: 1 }}
@@ -84,14 +163,14 @@ export default function Store() {
 
           <p className="text-slate-400 text-xl mt-6 max-w-3xl mx-auto leading-relaxed">
 
-            Soluciones tecnológicas y equipos profesionales de seguridad,
-            videovigilancia y energía inteligente.
+            Equipos profesionales de seguridad, videovigilancia,
+            inteligencia artificial y energía solar.
 
           </p>
 
         </motion.div>
 
-        {/* PRODUCTS */}
+        {/* PRODUCTOS */}
         <div className="grid md:grid-cols-3 gap-8">
 
           {products.map((product, index) => (
@@ -101,6 +180,7 @@ export default function Store() {
               key={index}
 
               initial={{ opacity: 0, y: 50 }}
+
               whileInView={{ opacity: 1, y: 0 }}
 
               transition={{
@@ -115,19 +195,25 @@ export default function Store() {
                 scale: 1.02,
               }}
 
-              className="bg-white/5 border border-cyan-400/10 rounded-[35px] overflow-hidden backdrop-blur-2xl"
+              className="bg-white/5 border border-cyan-400/10 rounded-[35px] overflow-hidden backdrop-blur-2xl shadow-[0_0_40px_rgba(34,211,238,0.08)]"
 
             >
 
-              <img
-                src={product.image}
-                alt={product.title}
-                className="h-[260px] w-full object-cover"
-              />
+              {/* IMAGEN */}
+              <div className="overflow-hidden">
 
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="h-[260px] w-full object-cover hover:scale-110 transition duration-700"
+                />
+
+              </div>
+
+              {/* CONTENIDO */}
               <div className="p-8">
 
-                <h3 className="text-3xl font-black mb-4">
+                <h3 className="text-3xl font-black mb-4 leading-tight">
 
                   {product.title}
 
@@ -145,11 +231,13 @@ export default function Store() {
 
                 </p>
 
+                {/* BOTONES */}
                 <div className="flex flex-col gap-4">
 
                   <a
                     href={product.whatsapp}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-cyan-400 hover:bg-cyan-300 text-black font-black py-4 rounded-2xl text-center transition"
                   >
 
@@ -158,7 +246,11 @@ export default function Store() {
                   </a>
 
                   <button
-                    className="border border-cyan-400/20 hover:border-cyan-400 text-white py-4 rounded-2xl transition"
+
+                    onClick={() => handlePayment(product)}
+
+                    className="border border-cyan-400/20 hover:border-cyan-400 hover:bg-cyan-400/10 text-white py-4 rounded-2xl transition"
+
                   >
 
                     Pagar Online

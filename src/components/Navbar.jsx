@@ -34,6 +34,10 @@ export default function Navbar() {
             Servicios
           </a>
 
+          <a href="#store" className="hover:text-sky-400 transition">
+            Tienda
+          </a>
+
           <a href="#" className="hover:text-sky-400 transition">
             Tecnología
           </a>
