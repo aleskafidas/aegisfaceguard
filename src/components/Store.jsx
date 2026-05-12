@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import cam1 from "../assets/store/cam1.jpg"
 import cam2 from "../assets/store/cam2.jpg"
@@ -59,6 +59,22 @@ const products = [
 
 export default function Store() {
 
+  const [selectedProduct, setSelectedProduct] = useState(null)
+
+  const [customerData, setCustomerData] = useState({
+
+    name: "",
+
+    email: "",
+
+    phone: "",
+
+    city: "",
+
+    address: "",
+
+  })
+
   useEffect(() => {
 
     const script = document.createElement("script")
@@ -111,6 +127,69 @@ export default function Store() {
       invoice: `AEGIS-${Date.now()}`,
 
       response: "https://www.aegisfaceguard.com",
+
+      name_billing: customerData.name,
+
+      email_billing: customerData.email,
+
+      mobilephone_billing: customerData.phone,
+
+      address_billing: customerData.address,
+
+      city_billing: customerData.city,
+
+    })
+
+  }
+
+  const handleInputChange = (e) => {
+
+    setCustomerData({
+
+      ...customerData,
+
+      [e.target.name]: e.target.value,
+
+    })
+
+  }
+
+  const continueToPayment = () => {
+
+    if (
+
+      !customerData.name ||
+
+      !customerData.email ||
+
+      !customerData.phone ||
+
+      !customerData.city ||
+
+      !customerData.address
+
+    ) {
+
+      alert("Por favor completa todos los campos")
+
+      return
+    }
+
+    handlePayment(selectedProduct)
+
+    setSelectedProduct(null)
+
+    setCustomerData({
+
+      name: "",
+
+      email: "",
+
+      phone: "",
+
+      city: "",
+
+      address: "",
 
     })
 
@@ -247,7 +326,7 @@ export default function Store() {
 
                   <button
 
-                    onClick={() => handlePayment(product)}
+                    onClick={() => setSelectedProduct(product)}
 
                     className="border border-cyan-400/20 hover:border-cyan-400 hover:bg-cyan-400/10 text-white py-4 rounded-2xl transition"
 
@@ -268,6 +347,118 @@ export default function Store() {
         </div>
 
       </div>
+
+      {/* MODAL DE PAGO */}
+      {selectedProduct && (
+
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto p-6">
+
+          <div className="bg-[#0f172a] border border-cyan-400/20 rounded-3xl p-8 w-full max-w-md mx-4 relative">
+
+            {/* BOTON CERRAR */}
+            <button
+
+              onClick={() => setSelectedProduct(null)}
+
+              className="absolute top-4 right-5 text-slate-400 hover:text-white text-3xl"
+
+            >
+
+              ×
+
+            </button>
+
+            <h3 className="text-2xl font-bold mb-2 text-center">
+
+              Finalizar Compra
+
+            </h3>
+
+            <p className="text-cyan-400 text-center mb-8">
+
+              {selectedProduct.title}
+
+            </p>
+
+            <input
+              required
+              type="text"
+              name="name"
+              placeholder="Nombre Completo"
+              value={customerData.name}
+              onChange={handleInputChange}
+              className="w-full mb-4 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+            />
+
+            <input
+              required
+              type="email"
+              name="email"
+              placeholder="Correo Electrónico"
+              value={customerData.email}
+              onChange={handleInputChange}
+              className="w-full mb-4 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+            />
+
+            <input
+              required
+              type="tel"
+              name="phone"
+              placeholder="Número de Teléfono"
+              value={customerData.phone}
+              onChange={handleInputChange}
+              className="w-full mb-4 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+            />
+
+            <input
+              required
+              type="text"
+              name="city"
+              placeholder="Ciudad"
+              value={customerData.city}
+              onChange={handleInputChange}
+              className="w-full mb-4 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+            />
+
+            <input
+              required
+              type="text"
+              name="address"
+              placeholder="Dirección de Envío"
+              value={customerData.address}
+              onChange={handleInputChange}
+              className="w-full mb-6 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+            />
+
+            <button
+
+              onClick={continueToPayment}
+
+              className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-black py-4 rounded-xl transition"
+
+            >
+
+              Continuar al Pago
+
+            </button>
+
+            <button
+
+              onClick={() => setSelectedProduct(null)}
+
+              className="w-full mt-4 border border-cyan-400/20 hover:border-cyan-400 hover:bg-cyan-400/10 text-white py-4 rounded-xl transition"
+
+            >
+
+              Cancelar
+
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
 
     </section>
 
