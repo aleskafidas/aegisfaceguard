@@ -6,153 +6,64 @@ import gallery3 from "../assets/gallery/gallery3.jpeg"
 import gallery4 from "../assets/gallery/gallery4.jpeg"
 
 const projects = [
-
   {
     image: gallery1,
-    title: "Reconocimiento Facial IA",
-    description:
-      "Sistema inteligente de detección facial y monitoreo avanzado.",
+    title: "Detección Inteligente con IA",
+    description: "Sistema de detección de amenazas y monitoreo avanzado.",
   },
-
   {
     image: gallery2,
     title: "Videovigilancia Profesional",
-    description:
-      "Instalaciones IP y PoE para edificios y negocios.",
+    description: "Instalaciones IP y PoE para edificios y negocios.",
   },
-
   {
     image: gallery3,
     title: "Automatización y Drones",
-    description:
-      "Soluciones autónomas y monitoreo aéreo avanzado.",
+    description: "Soluciones autónomas y monitoreo aéreo avanzado.",
   },
-
   {
     image: gallery4,
     title: "Infraestructura Tecnológica",
-    description:
-      "Centros de monitoreo y sistemas inteligentes integrados.",
+    description: "Centros de monitoreo y sistemas inteligentes integrados.",
   },
-
 ]
 
 export default function Showcase() {
-
   return (
-
-    <section className="bg-[#020617] text-white py-32 px-8 relative overflow-hidden">
-
-      {/* GLOW */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[140px] rounded-full"></div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-
-        {/* TITLE */}
+    <section className="bg-ink text-paper py-24 px-6">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-
-          className="text-center mb-20"
-
+          className="max-w-3xl mb-16"
         >
-
-          <div className="inline-block px-5 py-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 mb-6">
-
-            Proyectos y Tecnología
-
-          </div>
-
-          <h2 className="text-5xl md:text-6xl font-black">
-
-            Innovación en
-
-            <span className="text-cyan-400">
-              {" "}Seguridad
-            </span>
-
-          </h2>
-
-          <p className="text-slate-400 text-xl mt-6 max-w-3xl mx-auto">
-
-            Infraestructura moderna diseñada para sistemas de seguridad,
-            automatización y monitoreo inteligente.
-
+          <p className="text-accent text-xs font-semibold uppercase tracking-[0.25em] mb-5">
+            Proyectos
           </p>
-
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl tracking-tight">
+            Innovación aplicada a la seguridad
+          </h2>
         </motion.div>
 
-        {/* GRID */}
-        <div className="grid md:grid-cols-2 gap-10">
-
-          {projects.map((project, index) => (
-
-            <motion.div
-
-              key={index}
-
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-
-              transition={{
-                duration: 0.8,
-                delay: index * 0.1,
-              }}
-
-              viewport={{ once: true }}
-
-              whileHover={{
-                y: -10,
-              }}
-
-              className="group relative overflow-hidden rounded-[35px] border border-cyan-400/10 bg-white/5 backdrop-blur-2xl"
-
-            >
-
-              {/* IMAGE */}
-              <div className="overflow-hidden h-[350px]">
-
+        <div className="grid md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <div key={project.title} className="group">
+              <div className="overflow-hidden rounded-lg border border-line">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  className="w-full h-[320px] object-cover group-hover:scale-[1.03] transition-transform duration-500"
                 />
-
               </div>
-
-              {/* OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-
-              {/* CONTENT */}
-              <div className="absolute bottom-0 left-0 p-8">
-
-                <h3 className="text-3xl font-black mb-4">
-
-                  {project.title}
-
-                </h3>
-
-                <p className="text-slate-300 text-lg max-w-lg">
-
-                  {project.description}
-
-                </p>
-
-              </div>
-
-            </motion.div>
-
+              <h3 className="font-display font-bold text-xl mt-5">{project.title}</h3>
+              <p className="text-paper/60 mt-2">{project.description}</p>
+            </div>
           ))}
-
         </div>
-
       </div>
-
     </section>
-
   )
-
 }

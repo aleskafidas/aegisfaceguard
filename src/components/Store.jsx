@@ -6,410 +6,231 @@ import cam2 from "../assets/store/cam2.jpg"
 import cam3 from "../assets/store/cam3.png"
 
 const products = [
-
   {
     title: "Cámara WiFi Interiores 3MP Robótica",
-
     price: "$169.900 COP",
-
     amount: "169900",
-
     image: cam1,
-
     description:
       "Cámara inteligente para interiores con visión nocturna, detección de movimiento y monitoreo remoto desde celular.",
-
     whatsapp:
       "https://wa.me/573003966155?text=Hola%20quiero%20comprar%20la%20Camara%20WiFi",
   },
-
   {
     title: "Kit WiFi + 4 Cámaras + Disco 1TB",
-
     price: "$1.590.000 COP",
-
     amount: "1590000",
-
     image: cam2,
-
     description:
       "Sistema profesional de videovigilancia para hogares, negocios y edificios con grabación 24/7.",
-
     whatsapp:
       "https://wa.me/573003966155?text=Hola%20quiero%20comprar%20el%20Kit%20de%204%20Camaras",
   },
-
   {
     title: "Kit Solar Inteligente Desde 1KW",
-
     price: "$3.500.000 COP",
-
     amount: "3500000",
-
     image: cam3,
-
     description:
       "Sistema solar on-grid con monitoreo energético inteligente y alta eficiencia.",
-
     whatsapp:
       "https://wa.me/573003966155?text=Hola%20quiero%20cotizar%20el%20Kit%20Solar",
   },
-
 ]
 
 export default function Store() {
-
   const [selectedProduct, setSelectedProduct] = useState(null)
 
   const [customerData, setCustomerData] = useState({
-
     name: "",
-
     email: "",
-
     phone: "",
-
     city: "",
-
     address: "",
-
   })
 
   useEffect(() => {
-
     const script = document.createElement("script")
-
     script.src = "https://checkout.epayco.co/checkout.js"
-
     script.async = true
-
     document.body.appendChild(script)
-
   }, [])
 
   const handlePayment = (product) => {
-
     if (!window.ePayco) {
-
       alert("La pasarela de pago aún está cargando...")
-
       return
     }
 
     const handler = window.ePayco.checkout.configure({
-
       key: "b40f1bdd61dfc60995ba0bc2c895b4c1",
-
       test: false,
-
     })
 
     handler.open({
-
       external: false,
-
       amount: product.amount,
-
       name: product.title,
-
       description: product.description,
-
       currency: "cop",
-
       country: "co",
-
       lang: "es",
-
       tax: "0",
-
       tax_base: "0",
-
       invoice: `AEGIS-${Date.now()}`,
-
       response: "https://www.aegisfaceguard.com",
-
       name_billing: customerData.name,
-
       email_billing: customerData.email,
-
       mobilephone_billing: customerData.phone,
-
       address_billing: customerData.address,
-
       city_billing: customerData.city,
-
     })
-
   }
 
   const handleInputChange = (e) => {
-
     setCustomerData({
-
       ...customerData,
-
       [e.target.name]: e.target.value,
-
     })
-
   }
 
   const continueToPayment = () => {
-
     if (
-
       !customerData.name ||
-
       !customerData.email ||
-
       !customerData.phone ||
-
       !customerData.city ||
-
       !customerData.address
-
     ) {
-
       alert("Por favor completa todos los campos")
-
       return
     }
 
     handlePayment(selectedProduct)
-
     setSelectedProduct(null)
-
     setCustomerData({
-
       name: "",
-
       email: "",
-
       phone: "",
-
       city: "",
-
       address: "",
-
     })
-
   }
 
+  const inputClass =
+    "w-full mb-4 px-4 py-3 rounded-lg bg-paper border border-line-light text-ink focus:outline-none focus:border-accent-dark"
+
   return (
-
-    <section
-      id="store"
-      className="bg-black text-white py-32 px-8 relative overflow-hidden"
-    >
-
-      {/* EFECTOS */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[140px] rounded-full"></div>
-
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full"></div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-
-        {/* TITULO */}
+    <section id="store" className="bg-paper text-ink py-24 px-6">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-
-          initial={{ opacity: 0, y: 40 }}
-
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-
-          transition={{ duration: 1 }}
-
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-
-          className="text-center mb-20"
-
+          className="max-w-3xl mb-16"
         >
-
-          <div className="inline-block px-5 py-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 mb-6">
-
-            Tienda Tecnológica
-
-          </div>
-
-          <h2 className="text-5xl md:text-6xl font-black leading-tight">
-
-            Productos
-
-            <span className="text-cyan-400">
-              {" "}Destacados
-            </span>
-
-          </h2>
-
-          <p className="text-slate-400 text-xl mt-6 max-w-3xl mx-auto leading-relaxed">
-
-            Equipos profesionales de seguridad, videovigilancia,
-            inteligencia artificial y energía solar.
-
+          <p className="text-accent-dark text-xs font-semibold uppercase tracking-[0.25em] mb-5">
+            Tienda
           </p>
-
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl tracking-tight">
+            Productos destacados
+          </h2>
+          <p className="text-ink/60 text-lg mt-6 leading-relaxed">
+            Equipos profesionales de seguridad, videovigilancia, inteligencia
+            artificial y energía solar.
+          </p>
         </motion.div>
 
-        {/* PRODUCTOS */}
         <div className="grid md:grid-cols-3 gap-8">
-
-          {products.map((product, index) => (
-
-            <motion.div
-
-              key={index}
-
-              initial={{ opacity: 0, y: 50 }}
-
-              whileInView={{ opacity: 1, y: 0 }}
-
-              transition={{
-                duration: 0.8,
-                delay: index * 0.1,
-              }}
-
-              viewport={{ once: true }}
-
-              whileHover={{
-                y: -10,
-                scale: 1.02,
-              }}
-
-              className="bg-white/5 border border-cyan-400/10 rounded-[35px] overflow-hidden backdrop-blur-2xl shadow-[0_0_40px_rgba(34,211,238,0.08)]"
-
+          {products.map((product) => (
+            <div
+              key={product.title}
+              className="border border-line-light rounded-lg overflow-hidden bg-white flex flex-col"
             >
-
-              {/* IMAGEN */}
-              <div className="overflow-hidden">
-
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="h-[260px] w-full object-cover hover:scale-110 transition duration-700"
-                />
-
-              </div>
-
-              {/* CONTENIDO */}
-              <div className="p-8">
-
-                <h3 className="text-3xl font-black mb-4 leading-tight">
-
+              <img
+                src={product.image}
+                alt={product.title}
+                loading="lazy"
+                className="h-56 w-full object-cover"
+              />
+              <div className="p-7 flex flex-col flex-1">
+                <h3 className="font-display font-bold text-xl leading-tight">
                   {product.title}
-
                 </h3>
-
-                <p className="text-cyan-400 text-2xl font-bold mb-4">
-
+                <p className="font-display font-extrabold text-accent-dark text-2xl mt-3">
                   {product.price}
-
                 </p>
-
-                <p className="text-slate-400 leading-relaxed text-lg mb-8">
-
+                <p className="text-ink/60 leading-relaxed mt-3 mb-8 flex-1">
                   {product.description}
-
                 </p>
-
-                {/* BOTONES */}
-                <div className="flex flex-col gap-4">
-
+                <div className="flex flex-col gap-3">
                   <a
                     href={product.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-cyan-400 hover:bg-cyan-300 text-black font-black py-4 rounded-2xl text-center transition"
+                    className="bg-accent-dark hover:bg-accent transition-colors text-white font-semibold py-3 rounded-lg text-center"
                   >
-
                     Comprar por WhatsApp
-
                   </a>
-
                   <button
-
                     onClick={() => setSelectedProduct(product)}
-
-                    className="border border-cyan-400/20 hover:border-cyan-400 hover:bg-cyan-400/10 text-white py-4 rounded-2xl transition"
-
+                    className="border border-line-light hover:border-accent-dark transition-colors text-ink py-3 rounded-lg"
                   >
-
-                    Pagar Online
-
+                    Pagar online
                   </button>
-
                 </div>
-
               </div>
-
-            </motion.div>
-
+            </div>
           ))}
-
         </div>
-
       </div>
 
-      {/* MODAL DE PAGO */}
       {selectedProduct && (
-
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto p-6">
-
-          <div className="bg-[#0f172a] border border-cyan-400/20 rounded-3xl p-8 w-full max-w-md mx-4 relative">
-
-            {/* BOTON CERRAR */}
+        <div className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 overflow-y-auto p-6">
+          <div className="bg-white rounded-lg p-8 w-full max-w-md mx-4 relative text-ink">
             <button
-
               onClick={() => setSelectedProduct(null)}
-
-              className="absolute top-4 right-5 text-slate-400 hover:text-white text-3xl"
-
+              className="absolute top-4 right-5 text-ink/40 hover:text-ink text-3xl"
+              aria-label="Cerrar"
             >
-
               ×
-
             </button>
 
-            <h3 className="text-2xl font-bold mb-2 text-center">
-
-              Finalizar Compra
-
+            <h3 className="font-display font-bold text-2xl mb-2 text-center">
+              Finalizar compra
             </h3>
-
-            <p className="text-cyan-400 text-center mb-8">
-
+            <p className="text-accent-dark text-center mb-8">
               {selectedProduct.title}
-
             </p>
 
             <input
               required
               type="text"
               name="name"
-              placeholder="Nombre Completo"
+              placeholder="Nombre completo"
               value={customerData.name}
               onChange={handleInputChange}
-              className="w-full mb-4 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+              className={inputClass}
             />
-
             <input
               required
               type="email"
               name="email"
-              placeholder="Correo Electrónico"
+              placeholder="Correo electrónico"
               value={customerData.email}
               onChange={handleInputChange}
-              className="w-full mb-4 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+              className={inputClass}
             />
-
             <input
               required
               type="tel"
               name="phone"
-              placeholder="Número de Teléfono"
+              placeholder="Número de teléfono"
               value={customerData.phone}
               onChange={handleInputChange}
-              className="w-full mb-4 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+              className={inputClass}
             />
-
             <input
               required
               type="text"
@@ -417,51 +238,33 @@ export default function Store() {
               placeholder="Ciudad"
               value={customerData.city}
               onChange={handleInputChange}
-              className="w-full mb-4 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+              className={inputClass}
             />
-
             <input
               required
               type="text"
               name="address"
-              placeholder="Dirección de Envío"
+              placeholder="Dirección de envío"
               value={customerData.address}
               onChange={handleInputChange}
-              className="w-full mb-6 px-4 py-3 rounded-xl bg-white/5 border border-cyan-400/10 text-white focus:outline-none"
+              className="w-full mb-6 px-4 py-3 rounded-lg bg-paper border border-line-light text-ink focus:outline-none focus:border-accent-dark"
             />
 
             <button
-
               onClick={continueToPayment}
-
-              className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-black py-4 rounded-xl transition"
-
+              className="w-full bg-accent-dark hover:bg-accent transition-colors text-white font-semibold py-3.5 rounded-lg"
             >
-
-              Continuar al Pago
-
+              Continuar al pago
             </button>
-
             <button
-
               onClick={() => setSelectedProduct(null)}
-
-              className="w-full mt-4 border border-cyan-400/20 hover:border-cyan-400 hover:bg-cyan-400/10 text-white py-4 rounded-xl transition"
-
+              className="w-full mt-3 border border-line-light hover:border-ink/30 transition-colors text-ink py-3.5 rounded-lg"
             >
-
               Cancelar
-
             </button>
-
           </div>
-
         </div>
-
       )}
-
     </section>
-
   )
-
 }
