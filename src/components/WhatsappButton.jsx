@@ -1,13 +1,15 @@
+import { whatsappLink } from "../data/site"
+
 export default function WhatsappButton() {
   return (
     <a
-      href="https://wa.me/573003966155"
+      href={whatsappLink()}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Escríbenos por WhatsApp"
-      className="fixed bottom-6 right-6 z-50 bg-green-600 hover:bg-green-500 transition-colors w-14 h-14 rounded-full flex items-center justify-center shadow-lg"
+      aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)"
+      className="fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#1f8f4e] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.6)] transition-colors hover:bg-[#25a35a] sm:bottom-6 sm:right-6"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" className="w-7 h-7">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" className="h-7 w-7" aria-hidden="true">
         <path d="M16.001 3C8.832 3 3 8.832 3 16c0 2.824.91 5.438 2.456 7.57L3 29l5.604-2.39A12.944 12.944 0 0 0 16.001 29C23.168 29 29 23.168 29 16S23.168 3 16.001 3zm0 23.667a10.6 10.6 0 0 1-5.396-1.48l-.387-.229-3.325 1.42 1.425-3.24-.252-.41A10.61 10.61 0 1 1 16.001 26.667zm5.817-7.914c-.318-.16-1.882-.928-2.174-1.034-.292-.106-.504-.16-.716.16-.212.319-.822 1.034-1.008 1.247-.186.213-.372.24-.69.08-.318-.16-1.342-.494-2.557-1.576-.946-.843-1.584-1.884-1.77-2.203-.186-.32-.02-.492.14-.651.144-.143.318-.372.478-.558.16-.186.212-.319.318-.532.106-.213.053-.399-.027-.558-.08-.16-.716-1.725-.982-2.363-.258-.619-.52-.535-.716-.545l-.61-.01c-.212 0-.558.08-.85.399-.292.319-1.114 1.088-1.114 2.655s1.14 3.082 1.3 3.295c.16.213 2.244 3.427 5.437 4.806.76.328 1.353.524 1.816.67.763.243 1.457.209 2.006.127.612-.091 1.882-.769 2.148-1.512.266-.744.266-1.38.186-1.513-.08-.133-.292-.213-.61-.372z" />
       </svg>
     </a>

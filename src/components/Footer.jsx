@@ -1,49 +1,65 @@
-import logo from "../assets/logoaegis.png"
+import emblem from "../assets/brand/emblem-tile.png"
+import { CONTACT, NAV_LINKS, whatsappLink } from "../data/site"
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-paper border-t border-line px-6 py-16">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+    <footer className="border-t border-line-soft bg-night">
+      <div className="container-x grid gap-12 py-16 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]">
         <div>
-          <div className="flex items-center gap-3 mb-4">
-            <img src={logo} alt="AEGIS FaceGuard" className="h-10 object-contain" />
-            <span className="font-display font-extrabold text-lg tracking-tight">
-              AEGIS <span className="text-accent">FACEGUARD</span>
+          <a href="#inicio" className="inline-flex items-center gap-3" aria-label="AEGIS FaceGuard, ir al inicio">
+            <img src={emblem} alt="" width="40" height="40" loading="lazy" className="h-10 w-10 rounded-[8px]" />
+            <span className="font-display text-lg font-extrabold tracking-[-0.02em] text-ice">
+              AEGIS <span className="font-semibold text-mist">FaceGuard</span>
             </span>
-          </div>
-          <p className="text-paper/50 text-sm leading-relaxed max-w-xs">
-            Videovigilancia con inteligencia artificial para negocios en
-            Colombia. Sin biometría ni reconocimiento facial.
+          </a>
+          <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-mist">
+            Seguridad inteligente con IA para negocios en Colombia. Sin biometría ni reconocimiento facial.
           </p>
         </div>
 
-        <div>
-          <p className="text-paper/50 text-xs uppercase tracking-[0.2em] mb-4">
-            Navegación
-          </p>
-          <ul className="space-y-2 text-paper/70 text-sm">
-            <li><a href="#inicio" className="hover:text-paper transition-colors">Inicio</a></li>
-            <li><a href="#services" className="hover:text-paper transition-colors">Servicios</a></li>
-            <li><a href="#solutions" className="hover:text-paper transition-colors">Tecnología</a></li>
-            <li><a href="#store" className="hover:text-paper transition-colors">Tienda</a></li>
-            <li><a href="#contact" className="hover:text-paper transition-colors">Contacto</a></li>
+        <nav aria-label="Secundaria">
+          <h2 className="text-[0.8125rem] font-semibold text-steel font-body">Navegación</h2>
+          <ul className="mt-4 space-y-2.5 text-[0.9375rem]">
+            <li>
+              <a href="#inicio" className="text-mist hover:text-ice">
+                Inicio
+              </a>
+            </li>
+            {NAV_LINKS.map((l) => (
+              <li key={l.id}>
+                <a href={`#${l.id}`} className="text-mist hover:text-ice">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="#contact" className="text-mist hover:text-ice">
+                Contacto
+              </a>
+            </li>
           </ul>
-        </div>
+        </nav>
 
         <div>
-          <p className="text-paper/50 text-xs uppercase tracking-[0.2em] mb-4">
-            Contacto
-          </p>
-          <ul className="space-y-2 text-paper/70 text-sm">
-            <li>admin@aegisfaceguard.com</li>
-            <li>WhatsApp: +57 300 396 6155</li>
-            <li>Sabaneta, Antioquia — Colombia</li>
+          <h2 className="text-[0.8125rem] font-semibold text-steel font-body">Contacto</h2>
+          <ul className="mt-4 space-y-2.5 text-[0.9375rem]">
+            <li>
+              <a href={`mailto:${CONTACT.email}`} className="break-all text-mist hover:text-ice">
+                {CONTACT.email}
+              </a>
+            </li>
+            <li>
+              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="text-mist hover:text-ice">
+                WhatsApp: {CONTACT.whatsappDisplay}
+              </a>
+            </li>
+            <li className="text-mist">{CONTACT.location}</li>
           </ul>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto border-t border-line mt-12 pt-6">
-        <p className="text-paper/40 text-xs">
+      <div className="container-x border-t border-line-soft pt-6 pb-24 sm:pb-6">
+        <p className="text-[0.8125rem] text-steel">
           © {new Date().getFullYear()} AEGIS FaceGuard. Todos los derechos reservados.
         </p>
       </div>
