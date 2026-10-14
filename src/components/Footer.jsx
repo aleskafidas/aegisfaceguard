@@ -63,7 +63,7 @@ export default function Footer() {
           © {new Date().getFullYear()} AEGIS FaceGuard. Todos los derechos reservados.
         </p>
         <p className="mt-2 text-[0.8125rem] text-steel">
-          Las fotografías de comercios y equipos son ilustrativas: no corresponden a clientes ni instalaciones reales.
+          Las fotografías de comercios y equipos son ilustrativas y no corresponden a clientes. La captura del reporte en el celular proviene de una prueba del sistema.
         </p>
       </div>
     </footer>

@@ -11,8 +11,8 @@ import casco960 from "../assets/foto/casco-960.webp"
 import instalacion1920 from "../assets/foto/instalacion-1920.webp"
 import instalacion960 from "../assets/foto/instalacion-960.webp"
 import camara1200 from "../assets/foto/camara-domo-1200.webp"
-import celular1200 from "../assets/foto/celular-mano-1200.webp"
-import celular720 from "../assets/foto/celular-mano-720.webp"
+import celular1200 from "../assets/foto/celular-alerta-1200.webp"
+import celular720 from "../assets/foto/celular-alerta-720.webp"
 import sectorTienda from "../assets/foto/sector-tienda-900.webp"
 import sectorDrogueria from "../assets/foto/sector-drogueria-900.webp"
 import sectorJoyeria from "../assets/foto/sector-joyeria-900.webp"
@@ -56,11 +56,11 @@ export const PHOTOS = {
   camara: { src: camara1200, width: 1200, height: 1200, alt: "Cámara de seguridad tipo domo, de color blanco." },
   celular: {
     src: celular1200,
-    srcSet: `${celular720} 720w, ${celular1200} 1200w`,
+    srcSet: `${celular720} 720w, ${celular1200} 1100w`,
     sizes: "(min-width: 1024px) 45vw, 90vw",
-    width: 1200,
-    height: 1600,
-    alt: "Mano sosteniendo un celular con la pantalla encendida.",
+    width: 1100,
+    height: 1375,
+    alt: "Celular mostrando un reporte de AEGIS por WhatsApp: imagen de la cámara con una persona con casco marcada y un objeto compatible con un arma, verificado por un operador. La dirección y la ubicación están ocultas.",
   },
   sectores: [
     { src: sectorTienda, name: "Tiendas y minimercados", alt: "Pasillo de una tienda de barrio con productos." },

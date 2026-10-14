@@ -39,8 +39,8 @@ export default function Sectors() {
 
       <div className="container-x">
         <p className="mt-8 max-w-2xl text-mist">
-        También ferreterías, depósitos y otros locales con caja, mostrador o acceso directo. La viabilidad de cada local
-          se confirma en la visita de evaluación.
+          También panaderías, estaciones de servicio, ferreterías y otros locales con caja, mostrador o acceso directo.
+          La viabilidad de cada local se confirma en la visita de evaluación.
         </p>
       </div>
     </section>

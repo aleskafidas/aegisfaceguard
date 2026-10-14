@@ -25,8 +25,8 @@ const STEPS = [
     stage: 3,
   },
   {
-    title: "Tu decisión",
-    text: "Revisas la imagen y decides cómo actuar. El sistema señala eventos; no confirma delitos.",
+    title: "Decisión humana",
+    text: "Una persona revisa la imagen y decide: activar la sirena, enviar el reporte o resolver el evento. El sistema señala eventos; no confirma delitos.",
     stage: 3,
   },
 ]

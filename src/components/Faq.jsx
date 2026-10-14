@@ -12,11 +12,23 @@ const FAQS = [
   },
   {
     q: "¿Cómo recibo las alertas?",
-    a: "En el panel de operación web y en la app móvil, junto con la imagen del momento del evento.",
+    a: "En el panel de operación web y en la app móvil, junto con la imagen del momento del evento. Cuando un operador confirma el evento, también se puede enviar un reporte con la imagen por WhatsApp.",
   },
   {
     q: "¿Qué se instala en mi local?",
-    a: "Cámaras IP (o las que ya tienes, si son compatibles) y un dispositivo que conecta las cámaras con el sistema de análisis. Se necesita una conexión a internet estable. El detalle exacto se define en la visita de evaluación.",
+    a: "Cámaras IP (o las que ya tienes, si son compatibles), un dispositivo que conecta las cámaras con el sistema de análisis y, según la solución definida, un parlante para los avisos de voz y una sirena. Se necesita una conexión a internet estable. El detalle exacto se define en la visita de evaluación.",
+  },
+  {
+    q: "¿Tengo que modificar mi router o abrir puertos?",
+    a: "No. El dispositivo instalado en el local envía el video hacia afuera, así que no hace falta abrir puertos ni cambiar la configuración de tu router.",
+  },
+  {
+    q: "¿El análisis funciona las 24 horas?",
+    a: "El análisis se activa en el horario que acordemos para tu negocio. Lo definimos contigo durante la evaluación.",
+  },
+  {
+    q: "¿Qué pasa cuando detecta a alguien con casco?",
+    a: "Un parlante instalado en el local reproduce un aviso de voz y la alerta llega al panel de operación con la imagen.",
   },
   {
     q: "¿Sirven las cámaras que ya tengo?",
