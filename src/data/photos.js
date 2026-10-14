@@ -19,6 +19,10 @@ import sectorJoyeria from "../assets/foto/sector-joyeria-900.webp"
 import sectorCelulares from "../assets/foto/sector-celulares-900.webp"
 import solar1920 from "../assets/foto/solar-1920.webp"
 import solar960 from "../assets/foto/solar-960.webp"
+import camaras1200 from "../assets/foto/servicio-camaras-1200.webp"
+import camaras720 from "../assets/foto/servicio-camaras-720.webp"
+import drones1200 from "../assets/foto/servicio-drones-1200.webp"
+import drones720 from "../assets/foto/servicio-drones-720.webp"
 
 const wide = (big, small, bigW, smallW, w, h) => ({
   src: big,
@@ -61,6 +65,22 @@ export const PHOTOS = {
     width: 1100,
     height: 1375,
     alt: "Celular mostrando un reporte de AEGIS por WhatsApp: imagen de la cámara con una persona con casco marcada y un objeto compatible con un arma, verificado por un operador. La dirección y la ubicación están ocultas.",
+  },
+  servicioCamaras: {
+    src: camaras1200,
+    srcSet: `${camaras720} 720w, ${camaras1200} 1200w`,
+    sizes: "(min-width: 768px) 46vw, 92vw",
+    width: 1200,
+    height: 900,
+    alt: "Dos cámaras de seguridad IP instaladas en la esquina exterior de un edificio.",
+  },
+  servicioDrones: {
+    src: drones1200,
+    srcSet: `${drones720} 720w, ${drones1200} 1200w`,
+    sizes: "(min-width: 768px) 46vw, 92vw",
+    width: 1200,
+    height: 900,
+    alt: "Dron sobrevolando los techos de una ciudad al atardecer.",
   },
   sectores: [
     { src: sectorTienda, name: "Tiendas y minimercados", alt: "Pasillo de una tienda de barrio con productos." },
