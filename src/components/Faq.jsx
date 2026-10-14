@@ -38,32 +38,33 @@ const FAQS = [
 
 export default function Faq() {
   return (
-    <section id="faq" className="section-y border-t border-line-soft">
-      <div className="container-x grid gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-20">
-        <Reveal className="lg:sticky lg:top-28 lg:self-start">
-          <h2 className="t-h2">Preguntas frecuentes.</h2>
-          <p className="t-lead mt-6 max-w-sm text-mist">
-            ¿Tienes otra duda?{" "}
-            <a href="#contact" className="text-ice underline decoration-signal underline-offset-4 hover:text-signal">
-              Escríbenos
-            </a>
-            .
-          </p>
+    <section id="faq" className="cv-auto py-24 lg:py-36">
+      <div className="container-x mx-auto max-w-3xl">
+        <Reveal className="text-center">
+          <h2 className="t-section">Preguntas frecuentes.</h2>
         </Reveal>
 
-        <Reveal className="border-t border-line">
+        <Reveal className="mt-14 border-t border-line">
           {FAQS.map((item) => (
             <details key={item.q} className="faq-item group border-b border-line">
-              <summary className="flex items-center justify-between gap-6 rounded py-5 text-left font-display text-[1.0625rem] font-bold tracking-[-0.01em] text-ice transition-colors hover:text-signal sm:text-lg">
+              <summary className="flex items-center justify-between gap-6 rounded py-6 text-left font-display text-lg font-bold tracking-[-0.015em] text-ice transition-colors hover:text-signal sm:text-xl">
                 {item.q}
-                <span className="faq-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-signal transition-transform duration-200">
+                <span className="faq-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-deep text-signal transition-transform duration-200">
                   <Icon name="plus" size={16} strokeWidth={2} />
                 </span>
               </summary>
-              <p className="max-w-[40rem] pb-6 pr-12 text-[0.9375rem] leading-relaxed text-mist">{item.a}</p>
+              <p className="pb-7 pr-12 text-[1.0625rem] leading-relaxed text-mist">{item.a}</p>
             </details>
           ))}
         </Reveal>
+
+        <p className="mt-10 text-center text-mist">
+          ¿Tienes otra duda?{" "}
+          <a href="#contact" className="text-ice underline decoration-signal underline-offset-4 hover:text-signal">
+            Escríbenos
+          </a>
+          .
+        </p>
       </div>
     </section>
   )

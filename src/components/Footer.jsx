@@ -62,6 +62,9 @@ export default function Footer() {
         <p className="text-[0.8125rem] text-steel">
           © {new Date().getFullYear()} AEGIS FaceGuard. Todos los derechos reservados.
         </p>
+        <p className="mt-2 text-[0.8125rem] text-steel">
+          Las fotografías de comercios y equipos son ilustrativas: no corresponden a clientes ni instalaciones reales.
+        </p>
       </div>
     </footer>
   )

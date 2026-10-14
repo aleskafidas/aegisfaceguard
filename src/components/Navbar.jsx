@@ -23,7 +23,7 @@ export default function Navbar() {
     if (typeof IntersectionObserver === "undefined") return
     // Observa todas las secciones; solo las del menú marcan un enlace activo.
     const navIds = new Set(NAV_LINKS.map((l) => l.id))
-    const sections = Array.from(document.querySelectorAll("main > section"))
+    const sections = Array.from(document.querySelectorAll("main > [id], main > section"))
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -67,7 +67,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        solid ? "bg-night/92 backdrop-blur-md border-b border-line-soft" : "bg-transparent border-b border-transparent"
+        solid ? "bg-night/92 border-b border-line-soft" : "bg-transparent border-b border-transparent"
       }`}
     >
       <a

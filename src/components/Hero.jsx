@@ -1,43 +1,46 @@
-import HeroVisual from "./HeroVisual"
+import { PHOTOS } from "../data/photos"
 
+// Portada estilo Tesla: foto a pantalla completa, titular arriba, acciones abajo.
 export default function Hero() {
+  const p = PHOTOS.hero
   return (
-    <section id="inicio" className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28">
-      {/* Profundidad discreta: un solo halo y una retícula muy tenue */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-56 right-[-15%] h-[48rem] w-[48rem] bg-[radial-gradient(closest-side,rgba(24,217,208,0.09),transparent)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(29,53,80,0.16)_1px,transparent_1px),linear-gradient(to_bottom,rgba(29,53,80,0.16)_1px,transparent_1px)] bg-[size:72px_72px]" />
-      </div>
+    <section id="inicio" className="bleed shadow-text flex h-[100svh] min-h-[600px] flex-col">
+      <img
+        src={p.src}
+        srcSet={p.srcSet}
+        sizes={p.sizes}
+        width={p.width}
+        height={p.height}
+        alt={p.alt}
+        fetchPriority="high"
+        decoding="async"
+        className="bleed-img object-[42%_center]"
+      />
+      {/* Oscurece arriba (texto) y abajo (transición a la siguiente sección) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-[1] bg-[linear-gradient(to_bottom,rgba(6,17,31,0.85)_0%,rgba(6,17,31,0.3)_30%,rgba(6,17,31,0.12)_42%,rgba(6,17,31,0.85)_62%,rgba(6,17,31,0.96)_78%,#06111f_100%)] sm:bg-[linear-gradient(to_bottom,rgba(6,17,31,0.85)_0%,rgba(6,17,31,0.35)_34%,rgba(6,17,31,0.08)_48%,rgba(6,17,31,0.6)_66%,rgba(6,17,31,0.9)_80%,#06111f_100%)]"
+      />
 
-      <div className="container-x relative grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] lg:gap-16">
-        <div className="max-w-xl">
-          <p className="mb-6 inline-flex items-center gap-2.5 text-[0.75rem] font-semibold tracking-[0.18em] text-signal">
-            <span className="h-px w-8 bg-signal" aria-hidden="true" />
-            SEGURIDAD INTELIGENTE CON IA
-          </p>
+      <div className="container-x flex flex-1 flex-col items-center pt-[16vh] text-center sm:pt-[18vh]">
+        <p className="anim-rise text-[0.8125rem] font-semibold tracking-[0.22em] text-signal">SEGURIDAD INTELIGENTE CON IA</p>
+        <h1 className="t-hero anim-rise mt-5 max-w-5xl text-ice [animation-delay:120ms]">
+          Anticípate a los riesgos.
+          <br />
+          Protege tu negocio.
+        </h1>
 
-          <h1 className="t-display text-ice">Anticípate a los riesgos. Protege tu negocio.</h1>
-
-          <p className="t-lead mt-7 max-w-[34rem] text-mist">
-            Inteligencia artificial que analiza eventos de seguridad y te ayuda a actuar a tiempo.
-          </p>
-
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="#contact" className="btn btn-primary">
-              Solicitar demostración
-            </a>
-            <a href="#solutions" className="btn btn-ghost">
-              Conocer la tecnología
-            </a>
-          </div>
-
-          <p className="mt-10 max-w-[34rem] border-l border-line pl-4 text-[0.875rem] leading-relaxed text-steel">
-            Detección de armas y de personas con casco en las cámaras de tu local. Sin biometría ni reconocimiento
-            facial.
-          </p>
+        <p className="anim-rise mt-auto max-w-xl text-[1.0625rem] leading-relaxed text-ice/90 [animation-delay:240ms] sm:text-xl">
+          Inteligencia artificial que analiza eventos de seguridad y te ayuda a actuar a tiempo.
+        </p>
+        <div className="anim-rise mt-7 mb-[8vh] flex w-full flex-col gap-3 [animation-delay:360ms] sm:w-auto sm:flex-row">
+          <a href="#contact" className="btn btn-primary btn-lg sm:min-w-56">
+            Solicitar demostración
+          </a>
+          <a href="#solutions" className="btn btn-glass btn-lg sm:min-w-56">
+            Conocer la tecnología
+          </a>
         </div>
-
-        <HeroVisual />
       </div>
     </section>
   )

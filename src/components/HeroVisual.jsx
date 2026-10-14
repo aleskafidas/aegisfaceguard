@@ -25,7 +25,10 @@ function usePrefersReducedMotion() {
   return reduced
 }
 
-export default function HeroVisual() {
+// `stage` (0-3) opcional: si se pasa, el visor queda controlado desde fuera
+// (p. ej. por el scroll) y no avanza solo.
+export default function HeroVisual({ stage: controlledStage, caption = true }) {
+  const controlled = typeof controlledStage === "number"
   const reduced = usePrefersReducedMotion()
   const [stage, setStage] = useState(reduced ? 3 : 0)
   const [inView, setInView] = useState(true)
@@ -57,13 +60,13 @@ export default function HeroVisual() {
   }, [reduced])
 
   useEffect(() => {
-    if (reduced || !inView || !started) return
+    if (controlled || reduced || !inView || !started) return
     const durations = [2600, 2200, 2400, 3600]
     const t = setTimeout(() => setStage((s) => (s + 1) % STAGES.length), durations[stage])
     return () => clearTimeout(t)
-  }, [stage, reduced, inView, started])
+  }, [stage, reduced, inView, started, controlled])
 
-  const shownStage = reduced ? 3 : stage
+  const shownStage = controlled ? controlledStage : reduced ? 3 : stage
   const showBox = shownStage >= 1
   const verifying = shownStage === 2
   const notified = shownStage === 3
@@ -222,7 +225,7 @@ export default function HeroVisual() {
           </svg>
 
           {/* Línea de barrido */}
-          {shownStage === 0 && !reduced && started ? (
+          {shownStage === 0 && !reduced && (started || controlled) ? (
             <div className="pointer-events-none absolute inset-x-0 top-0 h-full" aria-hidden="true">
               <div className="anim-scan h-24 w-full bg-gradient-to-b from-transparent via-signal/15 to-transparent" />
             </div>
@@ -276,9 +279,9 @@ export default function HeroVisual() {
           })}
         </ol>
       </div>
-      <figcaption className="mt-3 text-[0.8125rem] leading-snug text-steel">
+      {caption ? <figcaption className="mt-3 text-[0.8125rem] leading-snug text-steel">
         Representación ilustrativa del flujo. No corresponde a imágenes ni datos de una cámara real.
-      </figcaption>
+      </figcaption> : null}
     </figure>
   )
 }

@@ -140,7 +140,7 @@ function CheckoutDialog({ product, onClose }) {
       onClose={onClose}
       onCancel={onClose}
       aria-labelledby={`${formId}-title`}
-      className="on-light m-auto w-[calc(100%-2rem)] max-w-md rounded-[var(--radius-lg)] bg-white p-0 text-ink shadow-2xl backdrop:bg-night/70 backdrop:backdrop-blur-sm"
+      className="on-light m-auto w-[calc(100%-2rem)] max-w-md rounded-[1.5rem] bg-white p-0 text-ink shadow-2xl backdrop:bg-night/70 backdrop:backdrop-blur-sm"
     >
       <form onSubmit={continueToPayment} noValidate className="relative p-7 sm:p-8">
         <button
@@ -224,23 +224,23 @@ export default function Store() {
   }, [])
 
   return (
-    <section id="store" className="on-light section-y bg-cloud text-ink">
+    <section id="store" className="cv-auto on-light bg-[#f2f5f8] py-24 text-ink lg:py-36">
       <div className="container-x">
-        <Reveal className="grid gap-6 lg:grid-cols-2 lg:items-end">
-          <h2 className="t-h2 max-w-xl">Tienda: equipos listos para tu local o tu hogar.</h2>
-          <p className="t-lead max-w-lg text-ink-soft lg:justify-self-end">
+        <Reveal className="text-center">
+          <h2 className="t-section mx-auto max-w-3xl">Tienda.</h2>
+          <p className="t-lead mx-auto mt-5 max-w-xl text-ink-soft">
             Equipos de videovigilancia y energía solar. Compra por WhatsApp o paga en línea.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
           {products.map((product) => (
             <Reveal
               as="article"
               key={product.title}
-              className="flex flex-col overflow-hidden rounded-[var(--radius-lg)] border border-[#d3dde7] bg-white"
+              className="flex flex-col items-center rounded-[1.75rem] bg-white px-7 pb-8 pt-10 text-center"
             >
-              <div className="relative aspect-[4/3] bg-white">
+              <div className="relative aspect-[4/3] w-full">
                 <img
                   src={product.image}
                   alt={product.title}
@@ -248,21 +248,21 @@ export default function Store() {
                   height={product.imageSize[1]}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 h-full w-full object-contain p-6"
+                  className="absolute inset-0 h-full w-full object-contain"
                 />
               </div>
-              <div className="flex flex-1 flex-col border-t border-[#e3e9ef] p-7">
-                <h3 className="t-h3 text-ink">{product.title}</h3>
-                <p className="mt-3 font-display text-2xl font-extrabold tracking-[-0.02em] text-ink">{product.price}</p>
-                <p className="mt-3 mb-8 flex-1 text-[0.9375rem] leading-relaxed text-ink-soft">{product.description}</p>
-                <div className="flex flex-col gap-3">
-                  <a href={product.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-                    Comprar por WhatsApp
-                  </a>
-                  <button type="button" onClick={() => setSelectedProduct(product)} className="btn btn-outline-dark">
-                    Pagar en línea
-                  </button>
-                </div>
+              <h3 className="mt-8 font-display text-xl font-bold leading-snug tracking-[-0.02em] text-ink">
+                {product.title}
+              </h3>
+              <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-ink-soft">{product.description}</p>
+              <p className="mt-5 font-display text-2xl font-extrabold tracking-[-0.02em] text-ink">{product.price}</p>
+              <div className="mt-6 flex w-full flex-col gap-2.5">
+                <a href={product.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
+                  Comprar por WhatsApp
+                </a>
+                <button type="button" onClick={() => setSelectedProduct(product)} className="btn btn-outline-dark">
+                  Pagar en línea
+                </button>
               </div>
             </Reveal>
           ))}

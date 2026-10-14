@@ -1,165 +1,95 @@
 import { useEffect, useRef, useState } from "react"
-import Reveal from "./ui/Reveal"
-import Icon from "./ui/Icon"
-import demoVideo from "../assets/videos/deteccion-demo.mp4"
-import demoPoster from "../assets/img/deteccion-demo-poster.webp"
+import HeroVisual from "./HeroVisual"
 
+// Recorrido con el visor fijo (estilo Apple): cada paso que pasa por el centro
+// de la pantalla cambia el estado del visor ilustrativo.
 const STEPS = [
   {
-    icon: "camera",
     title: "Captura",
     text: "Las cámaras del establecimiento envían el video a un dispositivo instalado en el local.",
+    stage: 0,
   },
   {
-    icon: "scan",
     title: "Análisis",
     text: "Modelos de visión artificial revisan las imágenes en busca de objetos compatibles con un arma y de personas con casco.",
+    stage: 1,
   },
   {
-    icon: "verify",
     title: "Verificación",
-    text: "Cuando aparece un posible evento, un segundo análisis por IA revisa la imagen para descartar detecciones erróneas.",
+    text: "Cada posible evento pasa por un segundo análisis con IA para descartar detecciones erróneas.",
+    stage: 2,
   },
   {
-    icon: "bell",
     title: "Aviso",
-    text: "Si el evento se mantiene, llega una alerta con la imagen al panel de operación y a la app móvil.",
+    text: "Si el evento se mantiene, recibes la alerta con la imagen en el panel de operación y en la app móvil.",
+    stage: 3,
   },
   {
-    icon: "person",
-    title: "Decisión humana",
-    text: "El responsable revisa la imagen y decide cómo actuar. El sistema señala eventos; no confirma delitos.",
+    title: "Tu decisión",
+    text: "Revisas la imagen y decides cómo actuar. El sistema señala eventos; no confirma delitos.",
+    stage: 3,
   },
 ]
 
-function DemoVideo() {
-  const videoRef = useRef(null)
-  const [playing, setPlaying] = useState(false)
-  const [userPaused, setUserPaused] = useState(false)
-
-  // Carga y reproduce solo cuando el video está en pantalla
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video || typeof IntersectionObserver === "undefined") return
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (reduced) return
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !userPaused) {
-          video.play().catch(() => setPlaying(false))
-        } else {
-          video.pause()
-        }
-      },
-      { threshold: 0.35 },
-    )
-    io.observe(video)
-    return () => io.disconnect()
-  }, [userPaused])
-
-  const toggle = () => {
-    const video = videoRef.current
-    if (!video) return
-    if (video.paused) {
-      setUserPaused(false)
-      video.play().catch(() => setPlaying(false))
-    } else {
-      setUserPaused(true)
-      video.pause()
-    }
-  }
-
-  return (
-    <figure className="m-0">
-      <div className="brackets relative overflow-hidden rounded-[var(--radius-md)] border border-line bg-deep">
-        <video
-          ref={videoRef}
-          src={demoVideo}
-          poster={demoPoster}
-          muted
-          loop
-          playsInline
-          preload="none"
-          width="1280"
-          height="720"
-          onPlay={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
-          className="block aspect-video h-auto w-full object-cover"
-          aria-label="Video de demostración: recuadros de detección de personas y cascos sobre la grabación de un local."
-        />
-        <button
-          type="button"
-          onClick={toggle}
-          className="absolute bottom-3 left-3 inline-flex h-10 items-center gap-2 rounded-[var(--radius-sm)] bg-night/85 px-3 text-[0.8125rem] font-semibold text-ice hover:bg-night"
-          aria-label={playing ? "Pausar video" : "Reproducir video"}
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" fill="currentColor">
-            {playing ? <path d="M3 2h3v10H3zM8 2h3v10H8z" /> : <path d="M3 1.5l9 5.5-9 5.5z" />}
-          </svg>
-          {playing ? "Pausar" : "Reproducir"}
-        </button>
-      </div>
-      <figcaption className="mt-3 max-w-xl text-[0.8125rem] leading-snug text-steel">
-        Demostración de detección sobre un video de referencia. Los recuadros marcan personas y cascos; una detección
-        indica un posible evento, no una certeza.
-      </figcaption>
-    </figure>
-  )
-}
-
 export default function HowItWorks() {
-  return (
-    <section id="solutions" className="section-y relative border-t border-line-soft">
-      <div className="container-x">
-        <Reveal className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end">
-          <h2 className="t-h2 max-w-xl">De la cámara a tu decisión, en cinco pasos.</h2>
-          <p className="t-lead max-w-xl text-mist lg:justify-self-end">
-            AEGIS combina visión artificial con una segunda verificación por IA. La alerta llega con la imagen para
-            que una persona revise y actúe.
-          </p>
-        </Reveal>
+  const [active, setActive] = useState(0)
+  const stepRefs = useRef([])
 
-        {/* Pipeline: fila en escritorio, columna con línea vertical en móvil */}
-        <Reveal as="ol" className="relative mt-16 grid gap-0 lg:grid-cols-5 lg:gap-6">
-          <span
-            aria-hidden="true"
-            className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-signal/70 via-line to-line lg:left-0 lg:right-0 lg:top-[19px] lg:bottom-auto lg:h-px lg:w-auto lg:bg-gradient-to-r"
-          />
-          {STEPS.map((step, i) => (
-            <li key={step.title} className="relative grid grid-cols-[40px_1fr] gap-5 pb-10 lg:block lg:pb-0">
-              <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-line bg-night text-signal">
-                <Icon name={step.icon} size={20} />
-              </span>
-              <div className="lg:mt-6">
-                <p className="text-[0.8125rem] font-semibold text-steel">Paso {i + 1}</p>
-                <h3 className="t-h3 mt-1">{step.title}</h3>
-                <p className="mt-3 text-[0.9375rem] leading-relaxed text-mist">{step.text}</p>
-              </div>
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(Number(e.target.dataset.index))
+        })
+      },
+      // En móvil el visor ocupa la parte superior: la línea de activación va más abajo.
+      { rootMargin: window.matchMedia("(min-width: 1024px)").matches ? "-48% 0px -48% 0px" : "-72% 0px -26% 0px" },
+    )
+    stepRefs.current.forEach((el) => el && io.observe(el))
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <section id="solutions" className="relative pt-24 lg:pt-32">
+      <div className="container-x text-center">
+        <h2 className="t-section mx-auto max-w-4xl">De la cámara a tu decisión.</h2>
+        <p className="t-lead mx-auto mt-6 max-w-2xl text-mist">
+          Visión artificial, una segunda verificación por IA y una persona que decide.
+        </p>
+      </div>
+
+      <div className="container-x mt-12 grid lg:mt-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
+        {/* Visor fijo */}
+        <div className="sticky top-16 z-10 -mx-5 bg-night/95 px-5 pb-4 pt-3 sm:-mx-8 sm:px-8 lg:top-0 lg:mx-0 lg:flex lg:h-[100svh] lg:items-center lg:bg-transparent lg:p-0">
+          <div className="w-full">
+            <HeroVisual stage={STEPS[active].stage} caption={false} />
+            <p className="mt-3 text-[0.75rem] leading-snug text-steel">
+              Ilustración del flujo. No corresponde a imágenes ni datos de una cámara real.
+            </p>
+          </div>
+        </div>
+
+        {/* Pasos */}
+        <ol className="relative pb-[30vh] lg:pb-[35vh] lg:pt-[25vh]">
+          {STEPS.map((s, i) => (
+            <li
+              key={s.title}
+              ref={(el) => (stepRefs.current[i] = el)}
+              data-index={i}
+              aria-current={active === i ? "step" : undefined}
+              className={`flex min-h-[55vh] flex-col justify-center transition-opacity duration-500 lg:min-h-[70vh] ${
+                active === i ? "opacity-100" : "opacity-30"
+              }`}
+            >
+              <p className="font-display text-[1rem] font-bold text-signal">{String(i + 1).padStart(2, "0")}</p>
+              <h3 className="mt-3 font-display text-[2.25rem] font-extrabold leading-none tracking-[-0.035em] sm:text-5xl">
+                {s.title}
+              </h3>
+              <p className="mt-5 max-w-md text-lg leading-relaxed text-mist">{s.text}</p>
             </li>
           ))}
-        </Reveal>
-
-        <Reveal className="mt-20 grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
-          <DemoVideo />
-          <div>
-            <h3 className="font-display text-2xl font-bold tracking-[-0.02em] lg:text-[1.75rem]">
-              Dónde se procesa cada imagen
-            </h3>
-            <dl className="mt-8 divide-y divide-line-soft border-y border-line-soft">
-              {[
-                ["En el local", "Un dispositivo conectado a tus cámaras toma el video y lo envía para su análisis."],
-                ["En la nube", "Servidores con aceleración gráfica ejecutan los modelos de detección."],
-                ["Verificación", "Un modelo de IA adicional revisa cada posible evento antes de avisar."],
-                ["Para el responsable", "Panel de operación web y app móvil con la imagen del evento."],
-              ].map(([term, desc]) => (
-                <div key={term} className="grid gap-1 py-4 sm:grid-cols-[9.5rem_1fr] sm:gap-6">
-                  <dt className="font-semibold text-ice">{term}</dt>
-                  <dd className="m-0 text-[0.9375rem] leading-relaxed text-mist">{desc}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </Reveal>
+        </ol>
       </div>
     </section>
   )
