@@ -5,21 +5,18 @@ import demoPoster from "../assets/video/aegis-demo-poster.webp"
 
 // Video demostrativo (dramatización). No se descarga hasta que la sección se
 // acerca a la pantalla; se reproduce en silencio mientras está visible y el
-// visitante puede pausarlo. Con "reducir movimiento" no arranca solo.
+// visitante puede pausarlo (requisito de accesibilidad para video automático).
 export default function DemoVideo() {
   const videoRef = useRef(null)
   const [src, setSrc] = useState(() => (typeof IntersectionObserver === "undefined" ? demoSrc : null))
   const [playing, setPlaying] = useState(false)
   const [userPaused, setUserPaused] = useState(false)
   const inViewRef = useRef(false)
-  const reducedRef = useRef(
-    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  )
 
   // Cuando el archivo se asigna con la sección ya visible, arranca la reproducción
   useEffect(() => {
     const video = videoRef.current
-    if (!video || !src || reducedRef.current || userPaused || !inViewRef.current) return
+    if (!video || !src || userPaused || !inViewRef.current) return
     video.play().catch(() => setPlaying(false))
   }, [src, userPaused])
 
@@ -44,7 +41,7 @@ export default function DemoVideo() {
     const player = new IntersectionObserver(
       ([e]) => {
         inViewRef.current = e.isIntersecting
-        if (reducedRef.current || userPaused) return
+        if (userPaused) return
         if (e.isIntersecting) {
           if (video.currentSrc) video.play().catch(() => setPlaying(false))
         } else video.pause()
@@ -89,6 +86,7 @@ export default function DemoVideo() {
               ref={videoRef}
               src={src || undefined}
               poster={demoPoster}
+              autoPlay
               muted
               loop
               playsInline
