@@ -67,7 +67,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        solid ? "bg-night/92 border-b border-line-soft" : "bg-transparent border-b border-transparent"
+        solid ? "bg-night/80 backdrop-blur-md border-b border-line-soft" : "bg-transparent border-b border-transparent"
       }`}
     >
       <a
@@ -80,8 +80,8 @@ export default function Navbar() {
       <nav aria-label="Principal" className="container-x flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]">
         <a href="#inicio" className="flex items-center gap-3 shrink-0" aria-label="AEGIS FaceGuard, ir al inicio">
           <img src={emblem} alt="" width="36" height="36" className="h-9 w-9 rounded-[8px]" />
-          <span className="font-display text-[1.05rem] font-extrabold tracking-[-0.02em] text-ice">
-            AEGIS <span className="font-semibold text-mist">FaceGuard</span>
+          <span className="font-display text-[0.95rem] font-bold tracking-[-0.01em] text-ice">
+            AEGIS <span className="font-medium text-mist">FaceGuard</span>
           </span>
         </a>
 

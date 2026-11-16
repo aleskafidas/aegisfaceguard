@@ -43,11 +43,13 @@ export default function About() {
   return (
     <section id="nosotros" className="cv-auto py-24 lg:py-36">
       <div className="container-x">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <h2 className="t-section">Por qué nació AEGIS FaceGuard.</h2>
+        <Reveal>
+          <div className="sec-head">
+            <h2 className="t-section">Por qué nació AEGIS FaceGuard.</h2>
+          </div>
         </Reveal>
 
-        <Reveal className="mx-auto mt-12 max-w-[40rem] space-y-5 text-lg leading-relaxed text-mist">
+        <Reveal className="mt-12 max-w-[40rem] space-y-5 text-lg leading-relaxed text-mist lg:ml-[calc(7/11*100%+1.5rem)] lg:-mt-24 lg:max-w-none">
           <p>
             AEGIS FaceGuard nació a partir de una realidad que viven miles de comerciantes y personas diariamente:{" "}
             <strong className="font-semibold text-ice">la inseguridad.</strong>
@@ -68,27 +70,27 @@ export default function About() {
           </p>
         </Reveal>
 
-        <Reveal className="mx-auto mt-20 max-w-5xl text-center">
+        <Reveal className="mt-20 max-w-5xl border-l-2 border-signal pl-6 lg:pl-10">
           <blockquote>
-            <p className="font-display text-[clamp(1.75rem,1rem+2.6vw,3.25rem)] font-bold leading-[1.12] tracking-[-0.03em] text-ice">«La tecnología también puede utilizarse para proteger, prevenir y generar tranquilidad.»</p>
+            <p className="font-display text-[clamp(1.5rem,1rem+2vw,2.75rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-ice">«La tecnología también puede utilizarse para proteger, prevenir y generar tranquilidad.»</p>
           </blockquote>
         </Reveal>
 
-        <Reveal className="mt-24 grid gap-12 md:grid-cols-3">
+        <Reveal className="mt-24 grid gap-x-10 md:grid-cols-3">
           {values.map((v) => (
-            <div key={v.title}>
-              <h3 className="font-display text-2xl font-extrabold tracking-[-0.03em] text-ice">{v.title}</h3>
+            <div key={v.title} className="border-t border-line py-6">
+              <h3 className="font-display text-xl font-bold tracking-[-0.02em] text-ice">{v.title}</h3>
               <p className="mt-3 leading-relaxed text-mist">{v.text}</p>
             </div>
           ))}
         </Reveal>
 
-        <Reveal className="mt-24 text-center">
+        <Reveal className="mt-20">
           <h3 className="text-[0.9375rem] font-semibold text-mist">Impulsado por programas de innovación</h3>
-          <ul className="mt-8 flex flex-wrap items-stretch justify-center gap-4">
+          <ul className="mt-6 flex flex-wrap items-stretch gap-4">
             {partners.map((p) => (
-              <li key={p.name} className="flex w-[15rem] flex-col items-center gap-4">
-                <div className="flex h-24 w-full items-center justify-center rounded-[1.25rem] bg-white p-4">
+              <li key={p.name} className="flex w-[15rem] flex-col gap-4">
+                <div className="flex h-24 w-full items-center justify-center rounded-[var(--radius-md)] bg-white p-4">
                   <img
                     src={p.logo}
                     alt={`Logotipo de ${p.name}`}

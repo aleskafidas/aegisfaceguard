@@ -8,7 +8,7 @@ export default function Footer() {
         <div>
           <a href="#inicio" className="inline-flex items-center gap-3" aria-label="AEGIS FaceGuard, ir al inicio">
             <img src={emblem} alt="" width="40" height="40" loading="lazy" className="h-10 w-10 rounded-[8px]" />
-            <span className="font-display text-lg font-extrabold tracking-[-0.02em] text-ice">
+            <span className="font-display text-lg font-bold tracking-[-0.02em] text-ice">
               AEGIS <span className="font-semibold text-mist">FaceGuard</span>
             </span>
           </a>

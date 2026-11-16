@@ -24,7 +24,7 @@ export default function Alerts() {
     <section aria-labelledby="alertas-titulo" className="cv-auto py-24 lg:py-36">
       <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <Reveal as="figure" className="m-0">
-          <div className="overflow-hidden rounded-[2rem]">
+          <div className="overflow-hidden rounded-[var(--radius-md)]">
             <img
               src={p.src}
               srcSet={p.srcSet}

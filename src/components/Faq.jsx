@@ -51,17 +51,18 @@ const FAQS = [
 export default function Faq() {
   return (
     <section id="faq" className="cv-auto py-24 lg:py-36">
-      <div className="container-x mx-auto max-w-3xl">
-        <Reveal className="text-center">
-          <h2 className="t-section">Preguntas frecuentes.</h2>
+      <div className="container-x grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] lg:gap-16">
+        <Reveal>
+          <h2 className="t-section lg:sticky lg:top-28">Preguntas frecuentes.</h2>
         </Reveal>
 
-        <Reveal className="mt-14 border-t border-line">
+        <div>
+        <Reveal className="border-t border-line">
           {FAQS.map((item) => (
             <details key={item.q} className="faq-item group border-b border-line">
-              <summary className="flex items-center justify-between gap-6 rounded py-6 text-left font-display text-lg font-bold tracking-[-0.015em] text-ice transition-colors hover:text-signal sm:text-xl">
+              <summary className="flex items-center justify-between gap-6 rounded py-6 text-left font-display text-[1.0625rem] font-semibold tracking-[-0.01em] text-ice transition-colors hover:text-signal sm:text-lg">
                 {item.q}
-                <span className="faq-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-deep text-signal transition-transform duration-200">
+                <span className="faq-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-deep text-signal transition-transform duration-200">
                   <Icon name="plus" size={16} strokeWidth={2} />
                 </span>
               </summary>
@@ -70,13 +71,14 @@ export default function Faq() {
           ))}
         </Reveal>
 
-        <p className="mt-10 text-center text-mist">
+        <p className="mt-8 text-mist">
           ¿Tienes otra duda?{" "}
           <a href="#contact" className="text-ice underline decoration-signal underline-offset-4 hover:text-signal">
             Escríbenos
           </a>
           .
         </p>
+        </div>
       </div>
     </section>
   )

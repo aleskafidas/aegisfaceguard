@@ -2,7 +2,9 @@ import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import Statement from "./components/Statement"
 import HowItWorks from "./components/HowItWorks"
-import DemoVideo from "./components/DemoVideo"
+// DemoVideo queda fuera hasta tener el video nuevo (gama alta). Para reactivarlo:
+// descomenta este import y la línea <DemoVideo /> más abajo.
+// import DemoVideo from "./components/DemoVideo"
 import FullBleed from "./components/FullBleed"
 import Product from "./components/Product"
 import Alerts from "./components/Alerts"
@@ -26,7 +28,7 @@ export default function App() {
         <Hero />
         <Statement />
         <HowItWorks />
-        <DemoVideo />
+        {/* <DemoVideo /> */}
         <FullBleed id="capacidades" photo={PHOTOS.mostrador} eyebrow="Capacidades" title="Detección de armas.">
           <p>
             Visión artificial que busca objetos compatibles con un arma en las imágenes de tus cámaras. Si el evento se

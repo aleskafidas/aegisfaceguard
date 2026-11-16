@@ -11,7 +11,7 @@ export default function Limits() {
   return (
     <section aria-labelledby="limites-titulo" className="cv-auto border-y border-line-soft py-20 lg:py-28">
       <Reveal className="container-x grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
-        <h2 id="limites-titulo" className="font-display text-3xl font-extrabold tracking-[-0.03em] sm:text-4xl">
+        <h2 id="limites-titulo" className="t-h2">
           Lo que debes saber.
         </h2>
         <ul className="grid gap-x-12 gap-y-6 sm:grid-cols-2">

@@ -1,6 +1,18 @@
-@import "@fontsource-variable/manrope";
 @import "@fontsource-variable/inter";
 @import "tailwindcss";
+
+/* Archivo variable (ejes de peso y ancho). Archivo local, licencia SIL OFL:
+   ver src/assets/fonts/ARCHIVO-LICENSE.txt. Un solo archivo da las dos voces
+   del sitio: ancho expandido para titulares y condensado para las lecturas
+   del visor. */
+@font-face {
+  font-family: "Archivo Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url("./assets/fonts/archivo-latin-wdth.woff2") format("woff2-variations");
+}
 
 /* ------------------------------------------------------------------
    Sistema visual AEGIS — "Advanced AI Security Engineering"
@@ -8,7 +20,7 @@
    de sistema y ámbar reservado para eventos en revisión.
    ------------------------------------------------------------------ */
 @theme {
-  --font-display: "Manrope Variable", "Manrope", system-ui, sans-serif;
+  --font-display: "Archivo Variable", "Archivo", "Arial Nova", system-ui, sans-serif;
   --font-body: "Inter Variable", "Inter", system-ui, sans-serif;
 
   --color-night: #06111f;
@@ -56,6 +68,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
+    font-stretch: 112%;
     text-wrap: balance;
     margin: 0;
   }
@@ -105,24 +118,27 @@
   /* Escala tipográfica */
   .t-display {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.5rem, 1.6rem + 4.2vw, 4.75rem);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    font-stretch: 122%;
+    font-weight: 700;
+    font-size: clamp(2.125rem, 1.4rem + 3.4vw, 4.25rem);
+    line-height: 1.03;
+    letter-spacing: -0.025em;
   }
   .t-h2 {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2rem, 1.45rem + 2.4vw, 3.25rem);
-    line-height: 1.06;
-    letter-spacing: -0.03em;
+    font-stretch: 118%;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 1.3rem + 2vw, 2.875rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
   }
   .t-h3 {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.25rem;
+    font-stretch: 112%;
+    font-weight: 650;
+    font-size: 1.1875rem;
     line-height: 1.25;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
   }
   .t-lead {
     font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
@@ -136,8 +152,8 @@
     justify-content: center;
     gap: 0.5rem;
     min-height: 3rem;
-    padding: 0.75rem 1.6rem;
-    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
     font-weight: 600;
     font-size: 0.9375rem;
     line-height: 1.2;
@@ -184,8 +200,10 @@
   }
 
   .btn-glass {
-    background: rgba(243, 247, 252, 0.18);
+    background: rgba(243, 247, 252, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(243, 247, 252, 0.28);
     color: var(--color-ice);
+    backdrop-filter: blur(10px);
   }
   .btn-glass:hover {
     background: rgba(243, 247, 252, 0.24);
@@ -199,24 +217,27 @@
   /* Tipografía de gran formato (estilo Apple/Tesla) */
   .t-hero {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.6rem, 1.2rem + 5.6vw, 6.25rem);
-    line-height: 0.98;
-    letter-spacing: -0.045em;
+    font-stretch: 125%;
+    font-weight: 750;
+    font-size: clamp(2.125rem, 1rem + 4.4vw, 5.25rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
   }
   .t-mega {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(1.9rem, 1rem + 3.9vw, 4.75rem);
-    line-height: 1.08;
-    letter-spacing: -0.035em;
+    font-stretch: 110%;
+    font-weight: 600;
+    font-size: clamp(1.75rem, 1rem + 3.3vw, 4.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
   }
   .t-section {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.25rem, 1.2rem + 4.2vw, 5rem);
-    line-height: 1;
-    letter-spacing: -0.04em;
+    font-stretch: 122%;
+    font-weight: 700;
+    font-size: clamp(1.875rem, 1.15rem + 3.1vw, 4rem);
+    line-height: 1.03;
+    letter-spacing: -0.028em;
   }
 
   /* Fotografía a sangre completa */
@@ -296,17 +317,174 @@
     border-width: 0 2px 2px 0;
   }
 
-  /* Revelado al hacer scroll: una sola entrada discreta por sección */
+  /* Reveal ya no anima: el movimiento del sitio se reserva para la secuencia
+     del visor en la portada y para lo que responde al scroll. */
   .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition:
-      opacity 700ms var(--ease-out-quart),
-      transform 700ms var(--ease-out-quart);
+    opacity: 1;
   }
-  .reveal.is-visible {
+
+  /* Voz del sistema: Archivo condensado para lecturas del visor */
+  .hud {
+    font-family: var(--font-display);
+    font-stretch: 68%;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    letter-spacing: 0.045em;
+  }
+
+  /* Titulares en Archivo expandido cuando se usa la utilidad font-display */
+  .font-display {
+    font-stretch: 112%;
+  }
+
+  /* Encabezado de sección: titular a la izquierda, bajada a la derecha */
+  .sec-head {
+    display: grid;
+    gap: 1.25rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 1.75rem;
+  }
+  @media (min-width: 1024px) {
+    .sec-head {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+      column-gap: 4rem;
+      align-items: end;
+      padding-top: 2.25rem;
+    }
+  }
+  .on-light .sec-head {
+    border-top-color: #c9d5e1;
+  }
+
+  /* Portada: la escena se dimensiona como object-fit: cover, pero con caja
+     propia, para que el recuadro de detección quede anclado a la foto. */
+  .scene {
+    --sh: 50svh;
+    --fx: 0.79;
+    --fy: 0.5;
+    --sw: max(100vw, calc(var(--sh) * 1.7778));
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: var(--sh);
+    z-index: -2;
+    overflow: hidden;
+  }
+  .scene-inner {
+    position: absolute;
+    width: var(--sw);
+    aspect-ratio: 16 / 9;
+    left: calc((100vw - var(--sw)) * var(--fx));
+    top: calc((var(--sh) - var(--sw) * 0.5625) * var(--fy));
+  }
+  @media (min-width: 1024px) {
+    .scene {
+      --sh: max(100svh, 640px);
+      --fx: 0.5;
+    }
+  }
+  .scene-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* el casco queda a la derecha, mirando al titular */
+  }
+
+  /* Recuadro de detección */
+  .lock {
+    position: absolute;
+    color: var(--color-amber);
+    opacity: 0;
+    transform: scale(1.12);
+    transition:
+      opacity 420ms ease,
+      transform 700ms var(--ease-out-quart),
+      color 400ms ease;
+  }
+  .lock.is-on {
     opacity: 1;
     transform: none;
+  }
+  .lock.is-clear {
+    color: var(--color-signal);
+  }
+  .lock-box {
+    position: absolute;
+    inset: 0;
+    border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+    background: color-mix(in srgb, currentColor 5%, transparent);
+  }
+  .lock-corner {
+    position: absolute;
+    width: clamp(14px, 2.2vw, 30px);
+    height: clamp(14px, 2.2vw, 30px);
+    border: 0 solid currentColor;
+  }
+  .lock-corner:nth-child(1) {
+    top: -1px;
+    left: -1px;
+    border-width: 3px 0 0 3px;
+  }
+  .lock-corner:nth-child(2) {
+    top: -1px;
+    right: -1px;
+    border-width: 3px 3px 0 0;
+  }
+  .lock-corner:nth-child(3) {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 3px 3px 0;
+  }
+  .lock-corner:nth-child(4) {
+    bottom: -1px;
+    left: -1px;
+    border-width: 0 0 3px 3px;
+  }
+  .lock-chip {
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    transition: background-color 400ms ease;
+    padding: 0.3rem 0.55rem;
+    background: currentColor;
+    white-space: nowrap;
+  }
+  .lock-chip > span {
+    color: var(--color-night);
+  }
+
+  /* Variantes para recuadros pequeños: el rótulo va fuera de la caja */
+  .lock-chip.is-above {
+    top: auto;
+    bottom: calc(100% + 4px);
+  }
+  .lock-chip.is-below {
+    top: calc(100% + 4px);
+  }
+
+  /* Marco de visor para lo que "está siendo observado" (video demo) */
+  .viewfinder {
+    position: relative;
+  }
+  .viewfinder::before,
+  .viewfinder::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: 26px;
+    height: 26px;
+    border: 0 solid var(--color-signal);
+    pointer-events: none;
+  }
+  .viewfinder::before {
+    top: -7px;
+    left: -7px;
+    border-width: 2px 0 0 2px;
+  }
+  .viewfinder::after {
+    right: -7px;
+    bottom: -7px;
+    border-width: 0 2px 2px 0;
   }
 
   /* FAQ con <details> nativo */
@@ -380,12 +558,11 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
   .anim-scan {
     display: none;
+  }
+  .lock {
+    transform: none;
   }
   .parallax-zoom {
     transform: none;

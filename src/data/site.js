@@ -16,11 +16,11 @@ export const DEMO_WHATSAPP = whatsappLink("Hola, quiero una demo de AEGIS FaceGu
 
 // Navegación principal. Los id existentes (#inicio, #services, #solutions,
 // #store, #contact) se conservan para no romper enlaces compartidos.
+// La tienda (#store) sigue en la página, al final, pero ya no va en el menú.
 export const NAV_LINKS = [
   { id: "solutions", label: "Cómo funciona" },
   { id: "capacidades", label: "Capacidades" },
   { id: "implementacion", label: "Implementación" },
   { id: "services", label: "Servicios" },
-  { id: "store", label: "Tienda" },
   { id: "faq", label: "Preguntas" },
 ]

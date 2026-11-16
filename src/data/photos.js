@@ -82,10 +82,7 @@ export const PHOTOS = {
     height: 900,
     alt: "Dron sobrevolando los techos de una ciudad al atardecer.",
   },
-  sectores: [
-    { src: sectorTienda, name: "Tiendas y minimercados", alt: "Pasillo de una tienda de barrio con productos." },
-    { src: sectorDrogueria, name: "Droguerías", alt: "Estantes de una droguería con cajas de medicamentos." },
-    { src: sectorJoyeria, name: "Joyerías y relojerías", alt: "Vitrina de joyería con collares y relojes." },
-    { src: sectorCelulares, name: "Tecnología y celulares", alt: "Vitrina de una tienda de celulares." },
-  ],
+  joyeria: { src: sectorJoyeria, width: 900, height: 1200, alt: "Vitrina de joyería con collares y relojes." },
+  // Fotos de sectores que ya no se muestran (quedan disponibles): tienda, droguería, celulares.
+  sectoresArchivo: [sectorTienda, sectorDrogueria, sectorCelulares],
 }

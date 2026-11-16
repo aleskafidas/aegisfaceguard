@@ -140,7 +140,7 @@ function CheckoutDialog({ product, onClose }) {
       onClose={onClose}
       onCancel={onClose}
       aria-labelledby={`${formId}-title`}
-      className="on-light m-auto w-[calc(100%-2rem)] max-w-md rounded-[1.5rem] bg-white p-0 text-ink shadow-2xl backdrop:bg-night/70 backdrop:backdrop-blur-sm"
+      className="on-light m-auto w-[calc(100%-2rem)] max-w-md rounded-[var(--radius-md)] bg-white p-0 text-ink shadow-2xl backdrop:bg-night/70 backdrop:backdrop-blur-sm"
     >
       <form onSubmit={continueToPayment} noValidate className="relative p-7 sm:p-8">
         <button
@@ -152,7 +152,7 @@ function CheckoutDialog({ product, onClose }) {
           <Icon name="close" size={20} />
         </button>
 
-        <h3 id={`${formId}-title`} className="font-display text-2xl font-extrabold tracking-[-0.02em]">
+        <h3 id={`${formId}-title`} className="font-display text-2xl font-bold tracking-[-0.02em]">
           Finalizar compra
         </h3>
         <p className="mt-1 pr-8 text-[0.9375rem] text-ink-soft">
@@ -224,13 +224,15 @@ export default function Store() {
   }, [])
 
   return (
-    <section id="store" className="cv-auto on-light bg-[#f2f5f8] py-24 text-ink lg:py-36">
+    <section id="store" className="cv-auto py-24 lg:py-36">
       <div className="container-x">
-        <Reveal className="text-center">
-          <h2 className="t-section mx-auto max-w-3xl">Tienda.</h2>
-          <p className="t-lead mx-auto mt-5 max-w-xl text-ink-soft">
-            Equipos de videovigilancia y energía solar. Compra por WhatsApp o paga en línea.
-          </p>
+        <Reveal>
+          <div className="sec-head">
+            <h2 className="t-section">Tienda.</h2>
+            <p className="t-lead text-mist">
+              Equipos de videovigilancia y energía solar. Compra por WhatsApp o paga en línea.
+            </p>
+          </div>
         </Reveal>
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">
@@ -238,7 +240,7 @@ export default function Store() {
             <Reveal
               as="article"
               key={product.title}
-              className="flex flex-col items-center rounded-[1.75rem] bg-white px-7 pb-8 pt-10 text-center"
+              className="on-light flex flex-col rounded-[var(--radius-md)] bg-white px-7 pb-7 pt-8 text-ink"
             >
               <div className="relative aspect-[4/3] w-full">
                 <img
@@ -251,11 +253,11 @@ export default function Store() {
                   className="absolute inset-0 h-full w-full object-contain"
                 />
               </div>
-              <h3 className="mt-8 font-display text-xl font-bold leading-snug tracking-[-0.02em] text-ink">
+              <h3 className="mt-7 font-display text-lg font-bold leading-snug tracking-[-0.015em] text-ink">
                 {product.title}
               </h3>
               <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-ink-soft">{product.description}</p>
-              <p className="mt-5 font-display text-2xl font-extrabold tracking-[-0.02em] text-ink">{product.price}</p>
+              <p className="mt-5 font-display text-2xl font-bold tracking-[-0.02em] text-ink">{product.price}</p>
               <div className="mt-6 flex w-full flex-col gap-2.5">
                 <a href={product.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
                   Comprar por WhatsApp

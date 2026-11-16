@@ -73,7 +73,7 @@ export default function Contact() {
           className="absolute inset-0 -z-[1] bg-[linear-gradient(to_bottom,#06111f_0%,rgba(6,17,31,0.62)_28%,rgba(6,17,31,0.62)_72%,#06111f_100%)]"
         />
         <Reveal className="container-x text-center">
-          <h2 className="t-hero mx-auto max-w-4xl">Mira AEGIS funcionando antes de decidir.</h2>
+          <h2 className="t-section mx-auto max-w-4xl">Mira AEGIS funcionando antes de decidir.</h2>
           <p className="t-lead mx-auto mt-6 max-w-xl text-ice/85">
             Solicita una demostración y te mostramos cómo se vería el servicio en tu establecimiento.
           </p>
@@ -92,7 +92,7 @@ export default function Contact() {
       {/* Formulario y datos de contacto */}
       <div id="formulario" className="container-x grid scroll-mt-24 gap-14 py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20 lg:py-28">
         <div>
-          <h3 className="font-display text-3xl font-extrabold tracking-[-0.03em] sm:text-4xl">Hablemos.</h3>
+          <h3 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">Hablemos.</h3>
           <dl className="mt-10 space-y-7">
             <div>
               <dt className="text-[0.875rem] font-semibold text-steel">Correo electrónico</dt>
@@ -119,8 +119,8 @@ export default function Contact() {
           </dl>
         </div>
 
-        <div className="on-light rounded-[1.75rem] bg-white p-6 text-ink sm:p-9">
-          <h3 className="font-display text-xl font-extrabold tracking-[-0.02em]">Escríbenos</h3>
+        <div className="on-light rounded-[var(--radius-md)] bg-white p-6 text-ink sm:p-9">
+          <h3 className="font-display text-xl font-bold tracking-[-0.02em]">Escríbenos</h3>
           <p className="mt-1 text-[0.9375rem] text-ink-soft">Déjanos tus datos y te contactamos.</p>
 
           <div className="mt-6 min-h-[22rem]">

@@ -70,18 +70,20 @@ export default function DemoVideo() {
 
   return (
     <section id="demo" aria-labelledby="demo-titulo" className="cv-auto py-24 lg:py-32">
-      <Reveal className="container-x text-center">
-        <h2 id="demo-titulo" className="t-section mx-auto max-w-4xl">
-          Míralo en acción.
-        </h2>
-        <p className="t-lead mx-auto mt-6 max-w-2xl text-mist">
-          De la detección a la sirena, la llamada al cuadrante y el reporte por WhatsApp, en 40 segundos.
-        </p>
+      <Reveal className="container-x">
+        <div className="sec-head">
+          <h2 id="demo-titulo" className="t-section">
+            Míralo en acción.
+          </h2>
+          <p className="t-lead text-mist">
+            De la detección a la sirena, la llamada al cuadrante y el reporte por WhatsApp, en 40 segundos.
+          </p>
+        </div>
       </Reveal>
 
       <Reveal className="container-x mt-12">
-        <figure className="m-0">
-          <div className="relative overflow-hidden rounded-[1.75rem] bg-deep">
+        <figure className="viewfinder m-0">
+          <div className="relative overflow-hidden rounded-[var(--radius-sm)] bg-deep">
             <video
               ref={videoRef}
               src={src || undefined}
@@ -110,7 +112,7 @@ export default function DemoVideo() {
               {playing ? "Pausar" : "Reproducir"}
             </button>
           </div>
-          <figcaption className="mx-auto mt-4 max-w-3xl text-center text-[0.8125rem] leading-snug text-steel">
+          <figcaption className="mt-4 max-w-3xl text-[0.8125rem] leading-snug text-steel">
             Dramatización: las escenas y las personas fueron generadas con IA y el panel es una recreación. La captura de
             WhatsApp proviene de una prueba real del sistema.
           </figcaption>

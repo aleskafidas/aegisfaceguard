@@ -27,7 +27,7 @@ const STEPS = [
   {
     title: "Decisión humana",
     text: "Una persona revisa la imagen y decide: activar la sirena, enviar el reporte o resolver el evento. El sistema señala eventos; no confirma delitos.",
-    stage: 3,
+    stage: 4,
   },
 ]
 
@@ -52,20 +52,22 @@ export default function HowItWorks() {
 
   return (
     <section id="solutions" className="relative pt-24 lg:pt-32">
-      <div className="container-x text-center">
-        <h2 className="t-section mx-auto max-w-4xl">De la cámara a tu decisión.</h2>
-        <p className="t-lead mx-auto mt-6 max-w-2xl text-mist">
-          Visión artificial, una segunda verificación por IA y una persona que decide.
-        </p>
+      <div className="container-x">
+        <div className="sec-head">
+          <h2 className="t-section">De la cámara a tu decisión.</h2>
+          <p className="t-lead text-mist">
+            Visión artificial, una segunda verificación por IA y una persona que decide.
+          </p>
+        </div>
       </div>
 
-      <div className="container-x mt-12 grid lg:mt-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
+      <div className="container-x mt-12 grid lg:mt-20 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-16">
         {/* Visor fijo */}
         <div className="sticky top-16 z-10 -mx-5 bg-night/95 px-5 pb-4 pt-3 sm:-mx-8 sm:px-8 lg:top-0 lg:mx-0 lg:flex lg:h-[100svh] lg:items-center lg:bg-transparent lg:p-0">
           <div className="w-full">
             <HeroVisual stage={STEPS[active].stage} caption={false} />
             <p className="mt-3 text-[0.75rem] leading-snug text-steel">
-              Ilustración del flujo. No corresponde a imágenes ni datos de una cámara real.
+              Imagen ilustrativa. Los recuadros representan el flujo; no son datos de una cámara real.
             </p>
           </div>
         </div>
@@ -82,8 +84,8 @@ export default function HowItWorks() {
                 active === i ? "opacity-100" : "opacity-30"
               }`}
             >
-              <p className="font-display text-[1rem] font-bold text-signal">{String(i + 1).padStart(2, "0")}</p>
-              <h3 className="mt-3 font-display text-[2.25rem] font-extrabold leading-none tracking-[-0.035em] sm:text-5xl">
+              <p className="hud text-[0.9375rem] text-signal">Paso {i + 1} de {STEPS.length}</p>
+              <h3 className="mt-3 font-display text-[2rem] font-bold leading-none tracking-[-0.025em] sm:text-[2.75rem]">
                 {s.title}
               </h3>
               <p className="mt-5 max-w-md text-lg leading-relaxed text-mist">{s.text}</p>

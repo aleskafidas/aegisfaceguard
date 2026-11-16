@@ -34,9 +34,6 @@ export default function OtherServices() {
             >
               Cotizar un sistema solar
             </a>
-            <a href="#store" className="btn btn-glass btn-lg">
-              Ver kit solar
-            </a>
           </>
         }
       >
@@ -50,7 +47,7 @@ export default function OtherServices() {
         <Reveal className="container-x grid gap-12 md:grid-cols-2 md:gap-6">
           {OTHER.map((s) => (
             <article key={s.title}>
-              <div className="overflow-hidden rounded-[1.75rem]">
+              <div className="overflow-hidden rounded-[var(--radius-md)]">
                 <img
                   src={s.photo.src}
                   srcSet={s.photo.srcSet}
@@ -63,7 +60,7 @@ export default function OtherServices() {
                   className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
                 />
               </div>
-              <h3 className="mt-7 font-display text-3xl font-extrabold tracking-[-0.03em] sm:text-4xl">{s.title}</h3>
+              <h3 className="mt-7 font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">{s.title}</h3>
               <p className="mt-3 max-w-md text-lg leading-relaxed text-mist">{s.text}</p>
             </article>
           ))}
